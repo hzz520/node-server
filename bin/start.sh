@@ -5,7 +5,7 @@ if [ -d "/opt/node-server/build" ] && [ -f "/opt/node-server/build/index.js" ];t
     fi
     cd '/opt/node-server/build'
     cnpm i
-    if [ $(lsof -i tcp:8001) ];then
+    if lsof -i tcp:8001;then
 	    echo 'restart node-server'
         pm2 restart "./index.js"
     else
