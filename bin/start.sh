@@ -1,9 +1,9 @@
 #!/bin/sh
-if [ - d ./build ] && [ -f ./build/index.js ];then
+if [ - d /opt/node-server/build ] && [ -f /opt/node-server/index.js ];then
     if [ ! which pm2 ];then
         cnpm i -g pm2
     fi
-    cd './build'
+    cd '/opt/node-server/build'
     cnpm i
     if [ lsof -i tcp:8001 ];then
         pm2 restart "./index.js"
