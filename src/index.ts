@@ -52,7 +52,6 @@ app.engine('vm', (tpl, context, fn) => {
 // app.use(['/blogs/', '/blogs/dist'], express.static('/Aliyun/blogs/dist'))
 // app.use('/blogs/dist', express.static('/Aliyun/blogs/dist'))
 
-
 app.use(cookie())
 
 router(app)
