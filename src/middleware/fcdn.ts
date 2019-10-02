@@ -6,9 +6,11 @@ import {
 } from 'path'
 import { sync } from 'glob'
 
+const isDev = process.env.NODE_ENV === 'development'
+
 class Fcdn {
     static outPath (pathname:string) {
-        let dir = dirname(join('/Aliyun/', pathname.replace('/static', '')))
+        let dir = dirname(join(isDev ? '/Aliyun' :'/opt/', pathname.replace('/static', '')))
         let filename = basename(pathname)
         let ext = extname(pathname)
         let base = filename.replace(ext, '')
