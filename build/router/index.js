@@ -23,8 +23,6 @@ exports.default = (function (app) {
         app.route("/api/blog/" + key).all(blog[key]);
     });
     Object.keys(shop).map(function (key) {
-        key === 'verify'
-            ? app.route('/api/chat/*').all(shop.verify)
-            : app.route("/api/chat/" + key).all(shop[key]);
+        app.route("/api/chat/" + key).all(shop[key]);
     });
 });

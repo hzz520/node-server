@@ -20,13 +20,14 @@ export default (app) => {
         let ctrl = rules[key]
         app.use(key, ctrl.default || ctrl)
     })
-    
+
     Object.keys(blog).map(key => {
         app.route(`/api/blog/${key}`).all(blog[key])
     })
     Object.keys(shop).map(key => {
-        key === 'verify' 
-        ? app.route('/api/chat/*').all(shop.verify) 
-        : app.route(`/api/chat/${key}`).all(shop[key])
+        // key === 'verify' 
+        // ? app.route('/api/chat/*').all(shop.verify) 
+        // : 
+        app.route(`/api/chat/${key}`).all(shop[key])
     })
 }
