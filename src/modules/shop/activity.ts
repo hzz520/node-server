@@ -1,0 +1,42 @@
+import { 
+    Schema, 
+    model,
+    Document,
+    createConnection
+} from 'mongoose'
+import * as moment from 'moment'
+
+export interface shopActiviteSchema extends Document {
+    _id: string
+    activite_id: string
+    activite_name: string
+    activite_rank: string
+    activite_desc: string
+    meta: {
+        createAt: moment.Moment,
+        updateAt: moment.Moment
+    }
+}
+
+const activiteSchema: Schema<shopActiviteSchema> = new Schema({
+    _id:Schema.Types.ObjectId,
+    activite_id:Schema.Types.ObjectId,
+    activite_name: String,
+    activite_rank:String,
+    activite_desc:String,
+    meta:{
+        createAt:Date,
+        updateAt:Date
+    }
+})
+
+activiteSchema.pre('save', function (next) {
+    if(this.isNew) {
+       this.meta.createAt = this.meta.updateAt = moment()
+    } else {
+        this.meta.updateAt = moment()
+    }
+    next()
+})
+
+export default model('Activite',activiteSchema)

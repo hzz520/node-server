@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        // "strictNullChecks": true,
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "allowSyntheticDefaultImports": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es5",
+        "sourceMap": false,
+        "allowJs": false,
+        "outDir": "./build"
+    },
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+    ]
+}

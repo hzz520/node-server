@@ -1,0 +1,38 @@
+{
+  "name": "f-node-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "ts": "npx tsc -w",
+    "open": "npx open http://127.0.0.1:8001",
+    "server": "npx nodemon ./build/index.js",
+    "start": "npx npm-run-all -p ts server open",
+    "build": "npx rimraf ./build && npx tsc",
+    "lint": "npx tslint -c ./tslint.json  -p ./tsconfig.json ",
+    "fix": "npx tslint -c ./tslint.json -p ./tsconfig.json --fix"
+  },
+  "dependencies": {
+    "ali-oss": "^6.1.1",
+    "body-parser": "^1.17.2",
+    "co": "^4.6.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.15.5",
+    "glob": "^7.1.4",
+    "md5": "^2.2.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.3",
+    "multiparty": "^4.2.1",
+    "serve-favicon": "^2.5.0",
+    "uuid": "^3.3.3",
+    "velocity": "^0.7.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/glob": "^7.1.1",
+    "@types/moment": "^2.13.0",
+    "@types/mongoose": "^5.5.18",
+    "@types/node": "^12.7.2",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.6.2"
+  }
+}

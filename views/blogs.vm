@@ -1,0 +1,19 @@
+#if (!$title)
+  #set($title = '首页')
+#end
+
+#set(
+    $versionLinks = [
+        '/static/blogs/dist/css/index.css'
+    ]
+)
+
+#set(
+    $versionScripts = [
+        '/static/blogs/dist/common/manifest.js',
+        '/static/blogs/dist/common/vendors.js',
+        '/static/blogs/dist/js/index.js'
+    ]
+)
+
+#parse('snippet/layout.vm')

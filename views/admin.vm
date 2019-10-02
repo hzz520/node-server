@@ -1,0 +1,19 @@
+#if (!$title)
+  #set($title = '后台管理')
+#end
+
+#set(
+    $versionLinks = [
+        '/static/admin/dist/css/index.css'
+    ]
+)
+
+#set(
+    $versionScripts = [
+        '/static/admin/dist/js/manifest.js',
+        '/static/admin/dist/js/vendors.js',
+        '/static/admin/dist/js/index.js'
+    ]
+)
+
+#parse('snippet/layout.vm')

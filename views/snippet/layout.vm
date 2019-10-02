@@ -1,0 +1,81 @@
+#*
+    velocity模版结构比较特殊会保留当前换行和空格
+*#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    #include('snippet/meta.vm')
+    <title>$title</title>
+    #if($links)
+    #foreach($item in $links)
+    <link href="$item" rel="stylesheet">
+    #end
+    #end
+    #if($versionLinks)
+        #foreach($item in $versionLinks)
+    <link href="$fcdn.outPath($item)" rel="stylesheet">
+        #end
+    #end
+    #if ($prescripts)
+        #foreach($item in $prescripts)
+    <script src="$item" type='text/javascript'></script>
+        #end
+    #end
+    #if ($preversionscripts)
+        #foreach($item in $preversionscripts)
+    <script src="$item" type='text/javascript'></script>
+        #end
+    #end
+    #if ($headscripts)
+        #foreach($item in $headscripts)
+    #include($item)
+        #end
+    #end
+    #if ($appId)
+    <script type='text/javascript'>
+        feApm && feApm({
+            appId: "$appId"
+        })
+    </script>
+    #end
+</head>
+<body>
+#if (!$noRoot)
+    #if (!$root) 
+        #set($root = 'root')
+    #end
+    <div id='$root'></div>
+#else
+    #foreach($item in $domArr)
+    #include($item)
+    #end
+#end
+
+#if (!$noPageData || $wmdaData) 
+    <script type='text/javascript'>
+    #if (!$noPageData)
+        #if ($pageData) 
+        var pageData = $pageData
+        #elseif ($interceptStatusMSG)
+        var pageData = {}
+        var interceptStatusMSG = $interceptStatusMSG
+        #else
+        #end
+    #end
+    #if ($wmdaData)
+        var WMDA_SDK_CONFIG = $wmdaData
+    #end
+    </script>
+#end
+#if ($scripts)
+    #foreach($item in $scripts)
+    <script src='$item' type='text/javascript'></script>
+    #end
+#end
+#if($versionScripts)
+    #foreach($item in $versionScripts)
+    <script src='$fcdn.outPath($item)' type='text/javascript'></script>
+    #end
+#end
+</body>
+</html>
