@@ -10,7 +10,7 @@ if [ -d "/opt/node-server/build" ] && [ -f "/opt/node-server/build/index.js" ];t
         pm2 restart "./index.js"
     else
 	    echo 'start node-server'
-        pm2 start -n -f node-server "./index.js"
+        pm2 start -n node-server -f "./index.js"
     fi
 else
    echo 'error'
