@@ -1,5 +1,5 @@
 "use strict";
-var Log4js_1 = require("./Log4js");
+var log4js_1 = require("./log4js");
 function getStr(msg, req, res) {
     var array = msg.split(' ');
     var tokenMap = {
@@ -33,12 +33,12 @@ function getUrls(req) {
 var Flog;
 (function (Flog) {
     function getLog(category, level) {
-        var logger = new Log4js_1.default(category, level || this.level);
+        var logger = new log4js_1.default(category, level || this.level);
         return logger;
     }
     Flog.getLog = getLog;
     function express() {
-        var logger = new Log4js_1.default('SYSTEM');
+        var logger = new log4js_1.default('SYSTEM');
         return function (req, res, next) {
             var start = +new Date();
             res.on('finish', function () {

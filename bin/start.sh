@@ -1,5 +1,4 @@
 #!/bin/sh
-echo $(-d "/opt/node-server/build")
 if [ -d "/opt/node-server/build" ] && [ -f "/opt/node-server/build/index.js" ];then
     if [ ! which pm2 ];then
         cnpm i -g pm2

@@ -1,4 +1,4 @@
-import Log4j from './Log4js'
+import Log4j from './log4js'
 
 function getStr(msg, req, res) {
     var array = msg.split(' ')
