@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ - d /opt/node-server/build ] && [ -f /opt/node-server/index.js ];then
+if [ -d /opt/node-server/build ] && [ -f /opt/node-server/index.js ];then
     if [ ! which pm2 ];then
         cnpm i -g pm2
     fi
