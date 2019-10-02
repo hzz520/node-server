@@ -5,7 +5,7 @@ if [ - d ./build ] && [ -f ./build/index.js ];then
     fi
     cd './build'
     cnpm i
-    if [ lsof -i tcp:8001 ]
+    if [ lsof -i tcp:8001 ];then
         pm2 restart ./index.js
     else
         pm2 restart -n node-server ./index.js
