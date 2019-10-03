@@ -4,9 +4,17 @@ import * as shop from '../controllers/apis/shop'
 import * as wx from '../controllers/apis/wx'
 import getRouter from '../controllers/views/index'
 
-mongoose.connect(`mongodb://47.94.193.216:27017/wxShop`, {
+mongoose.connect(`mongodb://root:root@127.0.0.1:27017/wxShop?authSource=admin`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
+})
+
+mongoose.connection.on('error', () => {
+    console.log('Mongoose connection error')
+})
+
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose connection success')
 })
 
 const rules = {

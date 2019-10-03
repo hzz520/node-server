@@ -5,9 +5,15 @@ var blog = require("../controllers/apis/blog");
 var shop = require("../controllers/apis/shop");
 var wx = require("../controllers/apis/wx");
 var index_1 = require("../controllers/views/index");
-mongoose.connect("mongodb://47.94.193.216:27017/wxShop", {
+mongoose.connect("mongodb://root:root@127.0.0.1:27017/wxShop?authSource=admin", {
     useNewUrlParser: true,
     useUnifiedTopology: true
+});
+mongoose.connection.on('error', function () {
+    console.log('Mongoose connection error');
+});
+mongoose.connection.on('connected', function () {
+    console.log('Mongoose connection success');
 });
 var rules = {
     '/': index_1.default('index'),
