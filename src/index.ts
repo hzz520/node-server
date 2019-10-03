@@ -7,13 +7,13 @@ import * as Flog from './middleware/flog/index'
 
 import router from './router/index'
 
-const allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-    res.header('Access-Control-Allow-Headers', 'Content-Type')
-    res.header('Access-Control-Allow-Credentials','true')
-    next()
-}
+// const allowCrossDomain = function(req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*')
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+//     res.header('Access-Control-Allow-Headers', 'Content-Type')
+//     res.header('Access-Control-Allow-Credentials','true')
+//     next()
+// }
 
 const app = express()
 
@@ -24,7 +24,7 @@ app.use(bodyParser.json({
 
 app.use(fcdn)
 app.use(Flog.express())
-app.use(allowCrossDomain)
+// app.use(allowCrossDomain)
 
 app.use(bodyParser.urlencoded({extended:true}))
 

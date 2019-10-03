@@ -345,26 +345,69 @@ export const addGood = (req,res,next) => {
             good_status 
         }
         if(Object.keys(files).length>0){
-            files.files.map((file, i) => {
-                var key = `wxshop/${uuid.v1()}.png`
-                var localFile = file.path
-                if (i === 0){
-                    promise[0] = new Promise((resolve, reject) => {
-                        co(function* () {
-                            var result = yield client.put(key, localFile)
-                            let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
-                            imgsArr.push(imgSrc)
-                            fs.unlinkSync(localFile)
-                            resolve()
-                        }).catch((err)=> {
-                            reject(err)
-                            res.json({
-                                code: 500,
-                                msg: '上传图片失败'
+            if (files.files.length === 1) {
+                new Promise((resolve, reject) => {
+                    var key = `wxshop/${uuid.v1()}.png`
+                    var localFile = files.files[0].path
+                    co(function* () {
+                        var result = yield client.put(key, localFile)
+                        let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                        imgsArr.push(imgSrc)
+                        fs.unlinkSync(localFile)
+                        resolve()
+                    }).catch((err)=> {
+                        reject(err)
+                        res.json({
+                            code: 500,
+                            msg: '上传图片失败'
+                        })
+                    })
+                }).then(() => {
+                    let good = new Good(Object.assign({},obj,{
+                        good_imgs:imgsArr
+                    }))
+                    good.save((err,response)=>{
+                        if(!err) {
+                            res.json({code:200,data:[]})
+                        }
+                    })
+                })
+            } else {
+                files.files.map((file, i) => {
+                    var key = `wxshop/${uuid.v1()}.png`
+                    var localFile = file.path
+                    if (i === 0){
+                        promise[0] = new Promise((resolve, reject) => {
+                            co(function* () {
+                                var result = yield client.put(key, localFile)
+                                let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                                imgsArr.push(imgSrc)
+                                fs.unlinkSync(localFile)
+                                resolve()
+                            }).catch((err)=> {
+                                reject(err)
+                                res.json({
+                                    code: 500,
+                                    msg: '上传图片失败'
+                                })
+                            })
+                        })
+                    } else {
+                        promise[i] = promise[i-1].then((resolve, reject) => {
+                            return new Promise((resolve, reject) => {
+                                co(function* () {
+                                    var result = yield client.put(key, localFile)
+                                    let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                                    imgsArr.push(imgSrc)
+                                    fs.unlinkSync(localFile)
+                                    resolve()
+                                }).catch((err) => {
+                                    reject(res)
+                                })
                             })
                         })
                         if (i === files.files.length - 1) {
-                            promise[0].then(() => {
+                            promise[i].then(() => {
                                 let good = new Good(Object.assign({},obj,{
                                     good_imgs:imgsArr
                                 }))
@@ -375,35 +418,9 @@ export const addGood = (req,res,next) => {
                                 })
                             })
                         }
-                    })
-                } else {
-                    promise[i] = promise[i-1].then((resolve, reject) => {
-                        return new Promise((resolve, reject) => {
-                            co(function* () {
-                                var result = yield client.put(key, localFile)
-                                let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
-                                imgsArr.push(imgSrc)
-                                fs.unlinkSync(localFile)
-                                resolve()
-                            }).catch((err) => {
-                                reject(res)
-                            })
-                        })
-                    })
-                    if (i === files.files.length - 1) {
-                        promise[i].then(() => {
-                            let good = new Good(Object.assign({},obj,{
-                                good_imgs:imgsArr
-                            }))
-                            good.save((err,response)=>{
-                                if(!err) {
-                                    res.json({code:200,data:[]})
-                                }
-                            })
-                        })
                     }
-                }
-            })
+                })
+            }
         } else {
             let good = new Good(Object.assign({},obj,{
                 good_imgs:imgsArr

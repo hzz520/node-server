@@ -372,49 +372,48 @@ exports.addGood = function (req, res, next) {
             good_status: good_status
         };
         if (Object.keys(files).length > 0) {
-            files.files.map(function (file, i) {
-                var key = "wxshop/" + uuid.v1() + ".png";
-                var localFile = file.path;
-                if (i === 0) {
-                    promise[0] = new Promise(function (resolve, reject) {
-                        co(function () {
-                            var result, imgSrc;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0: return [4, oss_1.default.put(key, localFile)];
-                                    case 1:
-                                        result = _a.sent();
-                                        imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
-                                        imgsArr.push(imgSrc);
-                                        fs.unlinkSync(localFile);
-                                        resolve();
-                                        return [2];
-                                }
-                            });
-                        }).catch(function (err) {
-                            reject(err);
-                            res.json({
-                                code: 500,
-                                msg: '上传图片失败'
-                            });
+            if (files.files.length === 1) {
+                new Promise(function (resolve, reject) {
+                    var key = "wxshop/" + uuid.v1() + ".png";
+                    var localFile = files.files[0].path;
+                    co(function () {
+                        var result, imgSrc;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4, oss_1.default.put(key, localFile)];
+                                case 1:
+                                    result = _a.sent();
+                                    imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                    imgsArr.push(imgSrc);
+                                    fs.unlinkSync(localFile);
+                                    resolve();
+                                    return [2];
+                            }
                         });
-                        if (i === files.files.length - 1) {
-                            promise[0].then(function () {
-                                var good = new good_1.default(Object.assign({}, obj, {
-                                    good_imgs: imgsArr
-                                }));
-                                good.save(function (err, response) {
-                                    if (!err) {
-                                        res.json({ code: 200, data: [] });
-                                    }
-                                });
-                            });
+                    }).catch(function (err) {
+                        reject(err);
+                        res.json({
+                            code: 500,
+                            msg: '上传图片失败'
+                        });
+                    });
+                }).then(function () {
+                    var good = new good_1.default(Object.assign({}, obj, {
+                        good_imgs: imgsArr
+                    }));
+                    good.save(function (err, response) {
+                        if (!err) {
+                            res.json({ code: 200, data: [] });
                         }
                     });
-                }
-                else {
-                    promise[i] = promise[i - 1].then(function (resolve, reject) {
-                        return new Promise(function (resolve, reject) {
+                });
+            }
+            else {
+                files.files.map(function (file, i) {
+                    var key = "wxshop/" + uuid.v1() + ".png";
+                    var localFile = file.path;
+                    if (i === 0) {
+                        promise[0] = new Promise(function (resolve, reject) {
                             co(function () {
                                 var result, imgSrc;
                                 return __generator(this, function (_a) {
@@ -430,24 +429,51 @@ exports.addGood = function (req, res, next) {
                                     }
                                 });
                             }).catch(function (err) {
-                                reject(res);
-                            });
-                        });
-                    });
-                    if (i === files.files.length - 1) {
-                        promise[i].then(function () {
-                            var good = new good_1.default(Object.assign({}, obj, {
-                                good_imgs: imgsArr
-                            }));
-                            good.save(function (err, response) {
-                                if (!err) {
-                                    res.json({ code: 200, data: [] });
-                                }
+                                reject(err);
+                                res.json({
+                                    code: 500,
+                                    msg: '上传图片失败'
+                                });
                             });
                         });
                     }
-                }
-            });
+                    else {
+                        promise[i] = promise[i - 1].then(function (resolve, reject) {
+                            return new Promise(function (resolve, reject) {
+                                co(function () {
+                                    var result, imgSrc;
+                                    return __generator(this, function (_a) {
+                                        switch (_a.label) {
+                                            case 0: return [4, oss_1.default.put(key, localFile)];
+                                            case 1:
+                                                result = _a.sent();
+                                                imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                                imgsArr.push(imgSrc);
+                                                fs.unlinkSync(localFile);
+                                                resolve();
+                                                return [2];
+                                        }
+                                    });
+                                }).catch(function (err) {
+                                    reject(res);
+                                });
+                            });
+                        });
+                        if (i === files.files.length - 1) {
+                            promise[i].then(function () {
+                                var good = new good_1.default(Object.assign({}, obj, {
+                                    good_imgs: imgsArr
+                                }));
+                                good.save(function (err, response) {
+                                    if (!err) {
+                                        res.json({ code: 200, data: [] });
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+            }
         }
         else {
             var good = new good_1.default(Object.assign({}, obj, {
