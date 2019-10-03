@@ -37,27 +37,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sha1_1 = require("sha1");
+var Flog = require("../../middleware/flog/index");
 exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var grant_type, appid, secret, ret, ret1, jsapi_ticket, nonce_str, timestamp, url, str, signature;
+    var grant_type, appid, secret, ret, ret1, jsapi_ticket, nonce_str, timestamp, url, str, signature, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 grant_type = 'client_credential';
                 appid = 'wx107561c879897389';
                 secret = '4ce9a2107221d416eeaf937afc20d8f1';
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 5, , 6]);
                 return [4, req.Axios.get('https://api.weixin.qq.com/cgi-bin/token', {
                         grant_type: grant_type,
                         appid: appid,
                         secret: secret
                     })];
-            case 1:
+            case 2:
                 ret = _a.sent();
-                if (!(ret && ret.access_token)) return [3, 3];
+                if (!(ret && ret.access_token)) return [3, 4];
                 return [4, req.Axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket', {
                         access_token: ret.access_token,
                         type: 'jsapi'
                     })];
-            case 2:
+            case 3:
                 ret1 = _a.sent();
                 jsapi_ticket = ret1.ticket;
                 nonce_str = '123456';
@@ -71,8 +75,13 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
                     nonceStr: nonce_str,
                     signature: signature,
                 });
-                _a.label = 3;
-            case 3: return [2];
+                _a.label = 4;
+            case 4: return [3, 6];
+            case 5:
+                error_1 = _a.sent();
+                Flog.getLog('ERROR').err(error_1);
+                return [3, 6];
+            case 6: return [2];
         }
     });
 }); };
