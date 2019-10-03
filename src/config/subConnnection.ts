@@ -1,5 +1,5 @@
 import * as  mongoose from 'mongoose'
-export const connection = mongoose.createConnection(`mongodb://root:root@127.0.0.1:27017/shop?authSource=admin`, {
+export const connection = mongoose.createConnection(`mongodb://aliyun:1h2z3z2325076@127.0.0.1:27017/shop?authSource=admin`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

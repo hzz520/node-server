@@ -4,7 +4,7 @@ import * as shop from '../controllers/apis/shop'
 import * as wx from '../controllers/apis/wx'
 import getRouter from '../controllers/views/index'
 
-mongoose.connect(`mongodb://root:root@127.0.0.1:27017/wxShop?authSource=admin`, {
+mongoose.connect(`mongodb://aliyun:1h2z3z2325076@127.0.0.1:27017/wxShop?authSource=admin`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
