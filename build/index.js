@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 var cookie = require("cookie-parser");
 var fcdn_1 = require("./middleware/fcdn");
 var Flog = require("./middleware/flog/index");
+var http_1 = require("./middleware/http");
 var index_1 = require("./router/index");
 var app = express();
 app.use(bodyParser.json({
@@ -14,6 +15,7 @@ app.use(bodyParser.json({
 }));
 app.use(fcdn_1.default);
 app.use(Flog.express());
+app.use(http_1.Axios.express());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, '../views'));
 var root = path.join(__dirname, '../views');
@@ -37,6 +39,7 @@ app.engine('vm', function (tpl, context, fn) {
         fn(error, '');
     }
 });
+app.use('/', express.static(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')));
 app.use(cookie());
 index_1.default(app);
 app.listen('8001', function () {

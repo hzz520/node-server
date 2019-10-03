@@ -1,6 +1,7 @@
 import * as  mongoose from 'mongoose'
 import * as blog from '../controllers/apis/blog' 
 import * as shop from '../controllers/apis/shop'
+import * as wx from '../controllers/apis/wx'
 import getRouter from '../controllers/views/index'
 
 mongoose.connect(`mongodb://47.94.193.216:27017/wxShop`, {
@@ -12,7 +13,8 @@ const rules = {
     '/': getRouter('index'),
     '/boom': getRouter('boom'),
     '/blogs': getRouter('blogs'),
-    '/admin': getRouter('admin')
+    '/admin': getRouter('admin'),
+    '/egret': getRouter('egret')
 }
 
 export default (app) => {
@@ -25,9 +27,9 @@ export default (app) => {
         app.route(`/api/blog/${key}`).all(blog[key])
     })
     Object.keys(shop).map(key => {
-        // key === 'verify' 
-        // ? app.route('/api/chat/*').all(shop.verify) 
-        // : 
         app.route(`/api/chat/${key}`).all(shop[key])
+    })
+    Object.keys(wx).map(key => {
+        app.route(`/api/${key}`).all(wx[key])
     })
 }

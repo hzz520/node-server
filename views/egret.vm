@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>世界名画抖抖抖抖抖起来了</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="true"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            background: #000;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+        body{
+			overflow: hidden;
+		}
+		#egret{
+            position:absolute;
+            top:0px;
+            left:0px;
+            z-index:9;
+		}
+		#vc{
+            position:absolute;
+            top:0px;
+            left:0px;
+			width:100%;
+			height:100%;
+		}
+		video{
+            width: 100%;
+            height: 100%;
+            object-fit:cover;
+		}
+    </style>
+
+    <!--<script src="JS/egret.new.js"></script>-->
+    <script egret="lib" src="/libs/modules/egret/egret.min.js"></script>
+	<script egret="lib" src="/libs/modules/egret/egret.web.min.js"></script>
+	<script egret="lib" src="/libs/modules/game/game.min.js"></script>
+	<script egret="lib" src="/libs/modules/res/res.min.js"></script>
+	<script src="/main.min.js"></script>
+    <script src="https://common.8864.com/web/js/jquery/jquery-1.12.0.min.js"></script>
+	<!--game_files_end-->
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+    <div id="delegate"></div>
+    <div id="egret"
+         style="margin: auto;width: 100%;height: 100%;" class="egret-player"
+         data-entry-class="Main"
+         data-orientation="auto"
+         data-scale-mode="fixedWidth"
+         data-frame-rate="33"
+         data-content-width="640"
+         data-content-height="1136"
+         data-show-paint-rect="true"
+         data-multi-fingered="1"
+         data-show-fps="false" data-show-log="false"
+         data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
+    </div>
+    <div id='vc'>
+         <video preload="auto" autoplay='autoplay' playsinline webkit-playsinline x-webkit-airplay='allow' x5-video-player-type='h5' src=""></video>
+    </div>
+    <audio id="aud" src="resource/bgm1.mp3" preload="auto" loop="loop" autoplay="autoplay"></audio>
+    <script>
+        /**
+         * {
+         * "renderMode":, //引擎渲染模式，"canvas" 或者 "webgl"
+         * "audioType": 0 //使用的音频类型，0:默认，1:qq audio，2:web audio，3:audio
+         * "antialias": //WebGL模式下是否开启抗锯齿，true:开启，false:关闭，默认为false
+         * "retina": //是否基于devicePixelRatio缩放画布
+         * }
+         **/
+        
+        egret.runEgret({renderMode:"webgl", audioType:0})
+
+        var aud = document.getElementById('aud')      
+         document.addEventListener('WeixinJSBridgeReady', function () {
+            aud.play()
+        }, false)
+
+        var title = '世界名画抖抖抖抖抖起来了？'
+        var desc = '偷看世界名画背后的不为人知的一面……'
+        var link = location.href
+        var imgUrl = 'http://cdn.im-ad.com/2017/Paint/resource/share.jpg'
+        $.post('/api/getWxJssdk',{url:link},function(data){
+            // console.log(sha1(data.str),data.signature)
+            wx.config({
+                debug:false,
+                appId:data.appId,
+                timestamp:data.timestamp,
+                nonceStr:data.nonceStr,
+                signature:data.signature,
+                jsApiList:[
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage'
+                ]
+            })
+            wx.ready(function(){
+                 wx.onMenuShareAppMessage({
+                    title:title,
+                    desc:desc,
+                    link:link,
+                    imgUrl:imgUrl,
+                    success:function(){
+
+                    },
+                    cancel:function(){
+
+                    }
+                })
+                wx.onMenuShareTimeline({
+                    title:title,
+                    desc:desc,
+                    link:link,
+                    imgUrl:imgUrl,
+                    success:function(){
+
+                    },
+                    cancel:function(){
+                        
+                    }
+                })
+            })
+        })
+        
+    </script>
+</body>
+</html>

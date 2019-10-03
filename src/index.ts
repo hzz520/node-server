@@ -4,6 +4,7 @@ import * as bodyParser  from 'body-parser'
 import * as cookie from 'cookie-parser'
 import fcdn from './middleware/fcdn'
 import * as Flog from './middleware/flog/index' 
+import { Axios } from './middleware/http'
 
 import router from './router/index'
 
@@ -16,6 +17,7 @@ app.use(bodyParser.json({
 
 app.use(fcdn)
 app.use(Flog.express())
+app.use(Axios.express())
 
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -49,8 +51,8 @@ app.engine('vm', (tpl, context, fn) => {
     fn(error, '')
   }
 })
-// app.use(['/blogs/', '/blogs/dist'], express.static('/Aliyun/blogs/dist'))
-// app.use('/blogs/dist', express.static('/Aliyun/blogs/dist'))
+
+app.use('/', express.static(path.resolve( process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')))
 
 app.use(cookie())
 
