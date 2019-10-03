@@ -4,9 +4,16 @@ import * as bodyParser  from 'body-parser'
 import * as cookie from 'cookie-parser'
 import fcdn from './middleware/fcdn'
 import * as Flog from './middleware/flog/index' 
-import { Axios } from './middleware/http'
 
 import router from './router/index'
+
+const allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    res.header('Access-Control-Allow-Headers', 'Content-Type')
+    res.header('Access-Control-Allow-Credentials','true')
+    next()
+}
 
 const app = express()
 
@@ -17,7 +24,7 @@ app.use(bodyParser.json({
 
 app.use(fcdn)
 app.use(Flog.express())
-app.use(Axios.express())
+app.use(allowCrossDomain)
 
 app.use(bodyParser.urlencoded({extended:true}))
 

@@ -6,8 +6,14 @@ var bodyParser = require("body-parser");
 var cookie = require("cookie-parser");
 var fcdn_1 = require("./middleware/fcdn");
 var Flog = require("./middleware/flog/index");
-var http_1 = require("./middleware/http");
 var index_1 = require("./router/index");
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+};
 var app = express();
 app.use(bodyParser.json({
     inflate: true,
@@ -15,7 +21,7 @@ app.use(bodyParser.json({
 }));
 app.use(fcdn_1.default);
 app.use(Flog.express());
-app.use(http_1.Axios.express());
+app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, '../views'));
 var root = path.join(__dirname, '../views');

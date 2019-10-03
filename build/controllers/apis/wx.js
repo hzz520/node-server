@@ -36,52 +36,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var sha1_1 = require("sha1");
+var sha1 = require("sha1");
 var Flog = require("../../middleware/flog/index");
+var request = require("request");
 exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var grant_type, appid, secret, ret, ret1, jsapi_ticket, nonce_str, timestamp, url, str, signature, error_1;
+    var grant_type, appid, secret;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                grant_type = 'client_credential';
-                appid = 'wx107561c879897389';
-                secret = '4ce9a2107221d416eeaf937afc20d8f1';
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 5, , 6]);
-                return [4, req.Axios.get('https://api.weixin.qq.com/cgi-bin/token', {
-                        grant_type: grant_type,
-                        appid: appid,
-                        secret: secret
-                    })];
-            case 2:
-                ret = _a.sent();
-                if (!(ret && ret.access_token)) return [3, 4];
-                return [4, req.Axios.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket', {
-                        access_token: ret.access_token,
-                        type: 'jsapi'
-                    })];
-            case 3:
-                ret1 = _a.sent();
-                jsapi_ticket = ret1.ticket;
-                nonce_str = '123456';
-                timestamp = Math.floor(new Date().getTime() / 1000);
-                url = req.body.url;
-                str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + nonce_str + '&timestamp=' + timestamp + '&url=' + url;
-                signature = sha1_1.default(str);
-                res.send({
-                    appId: appid,
-                    timestamp: timestamp,
-                    nonceStr: nonce_str,
-                    signature: signature,
+        grant_type = 'client_credential';
+        appid = 'wx107561c879897389';
+        secret = '4ce9a2107221d416eeaf937afc20d8f1';
+        try {
+            request('https://api.weixin.qq.com/cgi-bin/token?grant_type=' + grant_type + '&appid=' + appid + '&secret=' + secret, function (err, response, body) {
+                if (err) {
+                    Flog.getLog('ERROR').err(err);
+                    return res.json({ code: 1, msg: err });
+                }
+                var access_token = JSON.parse(body).access_token;
+                request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + access_token + '&type=jsapi', function (err, response, body) {
+                    if (err) {
+                        Flog.getLog('ERROR').err(err);
+                        return res.json({ code: 1, msg: err });
+                    }
+                    var jsapi_ticket = JSON.parse(body).ticket;
+                    var nonce_str = '123456';
+                    var timestamp = Math.floor(new Date().getTime() / 1000);
+                    var url = req.body.url;
+                    var str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + nonce_str + '&timestamp=' + timestamp + '&url=' + url;
+                    var signature = sha1(str);
+                    res.send({
+                        appId: appid,
+                        timestamp: timestamp,
+                        nonceStr: nonce_str,
+                        signature: signature,
+                    });
                 });
-                _a.label = 4;
-            case 4: return [3, 6];
-            case 5:
-                error_1 = _a.sent();
-                Flog.getLog('ERROR').err(error_1);
-                return [3, 6];
-            case 6: return [2];
+            });
         }
+        catch (error) {
+            Flog.getLog('ERROR').err(error);
+        }
+        return [2];
     });
 }); };

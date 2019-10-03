@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "ali-oss": "^6.1.1",
-    "axios": "^0.19.0",
     "body-parser": "^1.17.2",
     "co": "^4.6.0",
     "cookie-parser": "^1.4.4",
@@ -23,6 +22,7 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.3",
     "multiparty": "^4.2.1",
+    "request": "^2.88.0",
     "serve-favicon": "^2.5.0",
     "sha1": "^1.1.1",
     "uuid": "^3.3.3",
@@ -33,7 +33,6 @@
     "@types/glob": "^7.1.1",
     "@types/mongoose": "^5.5.18",
     "@types/node": "^12.7.2",
-    "@types/sha1": "^1.1.2",
     "cross-env": "^6.0.3",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.6.2"
