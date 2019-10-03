@@ -30,7 +30,6 @@ export const articleList = (req,res,next) => {
             if(response==null)
                 res.json({code:1,message:'id不存在'}) 
             else {
-                console.log(response)
                 count = response.comments.length
                
                 ArticleList.updateOne({_id:_id},{$inc:{pv:1}},function(err,response1){
@@ -66,7 +65,6 @@ export const articleList = (req,res,next) => {
                         }
                     })
                     .exec(function(err,response3){
-                        console.log(err, response3)
                         res.json({code:0,data:{article:response3,count:count,pageNum:Math.ceil(count/limitNums)}})
                     })
                     
@@ -140,7 +138,6 @@ export const articleList = (req,res,next) => {
             .exec(function(err,response: any){
                 if(!err){
                     if(response){
-                        //  console.log(limitNum,skip,response)
                         count = response.articles.length
                         res.json({code:0,message:'成功',data:{articleList:response.articles,count:count,pageNum:Math.ceil(count/limitNum)}})
                     } else {
@@ -290,7 +287,6 @@ export const getUserInfo = (req,res,next) => {
 }
 
 export const updateUserInfo = (req,res,next) => {
-    console.log('body', req.body)
     let { name, avatar, oldPassword, newPassword, type } = req.body
 
     if(avatar != ''&& type=='avatar'){
@@ -351,7 +347,6 @@ export const updateUserInfo = (req,res,next) => {
 
                 response.password = newPassword
                 response.save(function(err, response1: blogUserSchema){
-                    console.log(err, response1)
                     res.json({code:0,message:'更新密码成功',data:{
                         isLogin:true,
                         info:{
@@ -639,7 +634,6 @@ export const delArticle = (req,res,next) => {
                                 response.comments.forEach(function(el,index,arr){
                                    
                                     Comments.findOneAndRemove({_id:mongoose.Types.ObjectId(el)},function(err,response: any){
-                                        // console.log(response)
                                         if(!err){
                                             if(response.replyByOther.length>0){
                                                 response.replyByOther.forEach(function(el,index,arr){

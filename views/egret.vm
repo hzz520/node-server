@@ -94,7 +94,6 @@
         var link = location.href
         var imgUrl = 'http://cdn.im-ad.com/2017/Paint/resource/share.jpg'
         $.post('/api/getWxJssdk',{url:link},function(data){
-            // console.log(sha1(data.str),data.signature)
             wx.config({
                 debug:false,
                 appId:data.appId,

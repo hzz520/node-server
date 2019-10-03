@@ -41,5 +41,5 @@ app.use('/', express.static(path.resolve(process.env.NODE_ENV === 'development' 
 app.use(cookie());
 index_1.default(app);
 app.listen('8001', function () {
-    Flog.getLog('START').debug('app is listenning http://localhost:8001');
+    Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001');
 });

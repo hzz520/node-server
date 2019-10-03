@@ -166,7 +166,6 @@ exports.permissionList = function (req, res, next) {
 };
 exports.projectList = function (req, res, next) {
     var project_id = req.body.project_id || req.query.project_id;
-    console.log('projectList', project_id);
     var query = project_id ? { project_id: project_id } : {};
     projects_1.default.find(query, '-meta -__v -_id')
         .exec(function (err, response) {
@@ -852,7 +851,6 @@ exports.getActiviteList = function (req, res, next) {
                 : activity_1.default.find({}, '-meta -__v -_id')
                     .sort({ 'activite_id': -1 })
                     .exec(function (err, response) {
-                    console.log(response);
                     if (!err) {
                         return res.json({ code: 200, data: { total: count, current: current, data: response } });
                     }

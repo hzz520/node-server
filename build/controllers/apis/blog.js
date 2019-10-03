@@ -53,7 +53,6 @@ exports.articleList = function (req, res, next) {
             if (response == null)
                 res.json({ code: 1, message: 'id不存在' });
             else {
-                console.log(response);
                 count_1 = response.comments.length;
                 articleList_1.default.updateOne({ _id: _id_1 }, { $inc: { pv: 1 } }, function (err, response1) {
                     articleList_1.default.findOne({
@@ -87,7 +86,6 @@ exports.articleList = function (req, res, next) {
                         }
                     })
                         .exec(function (err, response3) {
-                        console.log(err, response3);
                         res.json({ code: 0, data: { article: response3, count: count_1, pageNum: Math.ceil(count_1 / limitNums_1) } });
                     });
                 });
@@ -285,7 +283,6 @@ exports.getUserInfo = function (req, res, next) {
     });
 };
 exports.updateUserInfo = function (req, res, next) {
-    console.log('body', req.body);
     var _a = req.body, name = _a.name, avatar = _a.avatar, oldPassword = _a.oldPassword, newPassword = _a.newPassword, type = _a.type;
     if (avatar != '' && type == 'avatar') {
         users_1.default.findOne({ name: name }).exec(function (err, response) {
@@ -351,7 +348,6 @@ exports.updateUserInfo = function (req, res, next) {
             }
             response.password = newPassword;
             response.save(function (err, response1) {
-                console.log(err, response1);
                 res.json({ code: 0, message: '更新密码成功', data: {
                         isLogin: true,
                         info: {

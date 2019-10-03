@@ -146,7 +146,6 @@ export const permissionList = (req,res,next) => {
  */
 export const projectList = (req,res,next) => {
     let project_id = req.body.project_id || req.query.project_id
-    console.log('projectList', project_id)
     let query = project_id ? {project_id:project_id} : {}
     Project.find(query,'-meta -__v -_id')
         .exec((err,response) => {
@@ -811,7 +810,6 @@ export const getActiviteList = (req,res,next) => {
                 : Activite.find({},'-meta -__v -_id')
                     .sort({'activite_id':-1})
                     .exec((err,response)=>{
-                        console.log(response)
                         if(!err) {
                             return res.json({code:200,data:{total:count,current:current,data:response}})
                         }

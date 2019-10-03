@@ -66,5 +66,5 @@ app.use(cookie())
 router(app)
 
 app.listen('8001',function () {
-    Flog.getLog('START').debug('app is listenning http://localhost:8001')
+    Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001')
 })

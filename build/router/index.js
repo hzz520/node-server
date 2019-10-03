@@ -5,15 +5,16 @@ var blog = require("../controllers/apis/blog");
 var shop = require("../controllers/apis/shop");
 var wx = require("../controllers/apis/wx");
 var index_1 = require("../controllers/views/index");
+var Flog = require("../middleware/flog/index");
 mongoose.connect("mongodb://aliyun:1h2z3z2325076@127.0.0.1:27017/wxShop?authSource=admin", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 mongoose.connection.on('error', function () {
-    console.log('Mongoose connection error');
+    Flog.getLog('MONGDB').err('Mongoose connection error');
 });
 mongoose.connection.on('connected', function () {
-    console.log('Mongoose connection success');
+    Flog.getLog('MONGDB').debug('Mongoose connection success');
 });
 var rules = {
     '/': index_1.default('index'),
