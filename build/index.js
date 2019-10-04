@@ -4,15 +4,17 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 var cookie = require("cookie-parser");
-var fcdn_1 = require("./middleware/fcdn");
 var Flog = require("./middleware/flog/index");
 var expressStaticGzip = require("express-static-gzip");
+var favicon = require("serve-favicon");
+var fcdn_1 = require("./middleware/fcdn");
 var index_1 = require("./router/index");
 var app = express();
 app.use(bodyParser.json({
     inflate: true,
     limit: 5242880
 }));
+app.use(favicon(path.join(__dirname, '../static', 'favicon.ico')));
 app.use(fcdn_1.default);
 app.use(cookie());
 app.use(Flog.express());

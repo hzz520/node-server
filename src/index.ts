@@ -2,9 +2,10 @@ import * as express from 'express'
 import * as path from 'path'
 import * as bodyParser  from 'body-parser'
 import * as cookie from 'cookie-parser'
-import fcdn from './middleware/fcdn'
 import * as Flog from './middleware/flog/index' 
 import * as expressStaticGzip from 'express-static-gzip'
+import * as favicon from 'serve-favicon'
+import fcdn from './middleware/fcdn'
 
 import router from './router/index'
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json({
     inflate:true,
     limit:5242880
 }))
+app.use(favicon(path.join(__dirname, '../static', 'favicon.ico')))
 
 app.use(fcdn)
 app.use(cookie())
