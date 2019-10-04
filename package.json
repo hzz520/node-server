@@ -17,6 +17,7 @@
     "co": "^4.6.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.15.5",
+    "express-static-gzip": "^2.0.5",
     "glob": "^7.1.4",
     "md5": "^2.2.1",
     "moment": "^2.24.0",

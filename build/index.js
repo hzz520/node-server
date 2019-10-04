@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 var cookie = require("cookie-parser");
 var fcdn_1 = require("./middleware/fcdn");
 var Flog = require("./middleware/flog/index");
+var expressStaticGzip = require("express-static-gzip");
 var index_1 = require("./router/index");
 var app = express();
 app.use(bodyParser.json({
@@ -37,7 +38,7 @@ app.engine('vm', function (tpl, context, fn) {
         fn(error, '');
     }
 });
-app.use('/', express.static(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')));
+app.use('/', expressStaticGzip(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')));
 app.use(cookie());
 index_1.default(app);
 app.listen('8001', function () {
