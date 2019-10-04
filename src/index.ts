@@ -16,6 +16,7 @@ app.use(bodyParser.json({
 }))
 
 app.use(fcdn)
+app.use(cookie())
 app.use(Flog.express())
 
 app.use(bodyParser.urlencoded({extended:true}))
@@ -51,11 +52,10 @@ app.engine('vm', (tpl, context, fn) => {
   }
 })
 
+router(app)
+
 app.use('/', expressStaticGzip(path.resolve( process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018'), {}))
 
-app.use(cookie())
-
-router(app)
 
 app.listen('8001',function () {
     Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001')

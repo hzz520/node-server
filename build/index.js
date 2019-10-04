@@ -14,6 +14,7 @@ app.use(bodyParser.json({
     limit: 5242880
 }));
 app.use(fcdn_1.default);
+app.use(cookie());
 app.use(Flog.express());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, '../views'));
@@ -38,9 +39,8 @@ app.engine('vm', function (tpl, context, fn) {
         fn(error, '');
     }
 });
-app.use('/', expressStaticGzip(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018'), {}));
-app.use(cookie());
 index_1.default(app);
+app.use('/', expressStaticGzip(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018'), {}));
 app.listen('8001', function () {
     Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001');
 });
