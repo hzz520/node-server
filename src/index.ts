@@ -51,7 +51,7 @@ app.engine('vm', (tpl, context, fn) => {
   }
 })
 
-app.use('/', expressStaticGzip(path.resolve( process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')))
+app.use('/', expressStaticGzip(path.resolve( process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018'), {}))
 
 app.use(cookie())
 
