@@ -5,7 +5,6 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var cookie = require("cookie-parser");
 var Flog = require("./middleware/flog/index");
-var expressStaticGzip = require("express-static-gzip");
 var favicon = require("serve-favicon");
 var fcdn_1 = require("./middleware/fcdn");
 var index_1 = require("./router/index");
@@ -41,8 +40,11 @@ app.engine('vm', function (tpl, context, fn) {
         fn(error, '');
     }
 });
+app.get('/jianli', function (req, res, next) {
+    res.sendFile(path.resolve(__dirname, '../static/jianli/index.html'));
+});
+app.use('/', express.static(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')));
 index_1.default(app);
-app.use('/', expressStaticGzip(path.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018'), {}));
 app.listen('8001', function () {
     Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001');
 });

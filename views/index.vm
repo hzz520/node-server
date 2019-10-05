@@ -52,6 +52,7 @@
 <body>
     <h2>作品或项目链接</h2>
     <!-- <a href="https://github.com/hzz520/canvasForAlibaba">选座位github地址</a> -->
+    <a href="/jianli">简历预览</a>
     <a href="/blogs">我的个人博客</a>
     <a href="/admin">后台管理(账号admin,密码admin)</a>
     <a href="/egret">白鹭引擎(手机端效果更佳)</a>
