@@ -233,6 +233,7 @@
         <p>8.centos 搭建ftp服务</p>
         <p>9.github webhook自动部署</p>
         <p>10.简单shell脚本的编写</p>
+        <p>11.使用md2html2pdf命令行通过makedown写简历</p>
     </div>
 </div>
 <div class="subtitle">自我评价</div>
