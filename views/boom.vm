@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Boom</title>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <style>
         body {
             width: 100%;
@@ -21,8 +21,8 @@
         }  
     </style>
 </head>
-<body background='./image/boom.gif'>
-    <audio id="aud" src="./image/boom.mp3" preload="auto" loop="loop" autoplay="autoplay"></audio>
+<body background='/static/image/boom.gif'>
+    <audio id="aud" src="/static/image/boom.mp3" preload="auto" loop="loop" autoplay="autoplay"></audio>
     <div>黄卉大笨蛋!</div>
 </body>
 <script>
