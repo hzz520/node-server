@@ -48,10 +48,10 @@
 	<script egret="lib" src="/libs/modules/game/game.min.js"></script>
 	<script egret="lib" src="/libs/modules/res/res.min.js"></script>
 	<script src="/main.min.js"></script>
-    <script src="https://common.8864.com/web/js/jquery/jquery-1.12.0.min.js"></script>
+    <script src="//common.8864.com/web/js/jquery/jquery-1.12.0.min.js"></script>
 	<!--game_files_end-->
 
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
     <div id="delegate"></div>
@@ -92,7 +92,7 @@
         var title = '世界名画抖抖抖抖抖起来了？'
         var desc = '偷看世界名画背后的不为人知的一面……'
         var link = location.href
-        var imgUrl = 'http://cdn.im-ad.com/2017/Paint/resource/share.jpg'
+        var imgUrl = '//cdn.im-ad.com/2017/Paint/resource/share.jpg'
         $.post('/api/getWxJssdk',{url:link},function(data){
             wx.config({
                 debug:false,

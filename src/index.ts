@@ -54,13 +54,14 @@ app.engine('vm', (tpl, context, fn) => {
   }
 })
 
+router(app)
+
 app.get('/jianli', (req, res, next) => {
   res.sendFile(path.resolve(__dirname, '../static/jianli/index.html'))
 })
 
+app.use('/static', express.static(path.resolve(__dirname, '../static')))
 app.use('/', express.static(path.resolve( process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')))
-
-router(app)
 
 app.listen('8001',function () {
     Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001')
