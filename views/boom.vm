@@ -23,7 +23,7 @@
 </head>
 <body background='//chat-hzz.oss-cn-beijing.aliyuncs.com/boom.gif'>
     <audio id="aud" src="//chat-hzz.oss-cn-beijing.aliyuncs.com/boom.mp3" preload="auto" loop="loop" autoplay="autoplay"></audio>
-    <div>跟我一起摇摆</div>
+    <div>跟我一起摇摆~~</div>
 </body>
 <script>
     var aud = document.getElementById('aud')      
