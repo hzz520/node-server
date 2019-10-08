@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as bodyParser  from 'body-parser'
 import * as cookie from 'cookie-parser'
 import * as Flog from './middleware/flog/index' 
-import * as expressStaticGzip from 'express-static-gzip'
+// import * as expressStaticGzip from 'express-static-gzip'
 import * as favicon from 'serve-favicon'
 import fcdn from './middleware/fcdn'
 
