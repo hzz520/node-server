@@ -1,15 +1,27 @@
-import { connection } from '../../config/mysql'
+import { connectionPool } from '../../config/mysql'
+import * as Flog from '../../middleware/flog/index'
 
 export const mysql = (req, res) => {
-    connection.query('SELECT * FROM test', (err, result) => {
+    connectionPool.getConnection((err, connection) => {
         if (err) {
-            console.log('[SELECT ERROR] - ',err.message);
-            return res.json({ code: 0, msg: err.message })
-        }
+            connection.release()
+            Flog.getLog('MYSQL-FAIL').err(err.message);
+            res.json({ code: -1, msg: err })
+        } else {
+            connection.query('SELECT * FROM test', (err, result) => {
+                if (err) {
+                    connection.release()
+                    Flog.getLog('MYSQL-FAIL').err(err.message);
+                    return res.json({ code: 0, msg: err.message })
+                }
 
-        res.json({
-            code: 0,
-            data: result
-        })
+                connection.release()
+        
+                res.json({
+                    code: 0,
+                    data: result
+                })
+            })
+        }
     })
 }
