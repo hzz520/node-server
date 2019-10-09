@@ -2,6 +2,7 @@ import * as  mongoose from 'mongoose'
 import * as blog from '../controllers/apis/blog' 
 import * as shop from '../controllers/apis/shop'
 import * as wx from '../controllers/apis/wx'
+import * as test from '../controllers/apis/test' 
 import getRouter from '../controllers/views/index'
 import * as Flog from '../middleware/flog/index'
 
@@ -30,6 +31,10 @@ export default (app) => {
     Object.keys(rules).map(key => {
         let ctrl = rules[key]
         app.use(key, ctrl.default || ctrl)
+    })
+
+    Object.keys(test).map(key => {
+        app.route(`/api/test/${key}`).all(test[key])
     })
 
     Object.keys(blog).map(key => {
