@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var blog = require("../controllers/apis/blog");
 var shop = require("../controllers/apis/shop");
 var wx = require("../controllers/apis/wx");
+var test = require("../controllers/apis/test");
 var index_1 = require("../controllers/views/index");
 var Flog = require("../middleware/flog/index");
 mongoose.connect("mongodb://aliyun:1h2z3z2325076@127.0.0.1:27017/wxShop?authSource=admin", {
@@ -27,6 +28,9 @@ exports.default = (function (app) {
     Object.keys(rules).map(function (key) {
         var ctrl = rules[key];
         app.use(key, ctrl.default || ctrl);
+    });
+    Object.keys(test).map(function (key) {
+        app.route("/api/test/" + key).all(test[key]);
     });
     Object.keys(blog).map(function (key) {
         app.route("/api/blog/" + key).all(blog[key]);
