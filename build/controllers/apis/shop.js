@@ -200,7 +200,7 @@ exports.projectEdit = function (req, res, next) {
                             case 0: return [4, oss_1.default.put(key, localFile)];
                             case 1:
                                 result = _a.sent();
-                                imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                 fs.unlinkSync(localFile);
                                 projects_1.default.findOne({ project_id: project_id.toString() })
                                     .exec(function (err, response) {
@@ -382,7 +382,7 @@ exports.addGood = function (req, res, next) {
                                 case 0: return [4, oss_1.default.put(key, localFile)];
                                 case 1:
                                     result = _a.sent();
-                                    imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                    imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                     imgsArr.push(imgSrc);
                                     fs.unlinkSync(localFile);
                                     resolve();
@@ -420,7 +420,7 @@ exports.addGood = function (req, res, next) {
                                         case 0: return [4, oss_1.default.put(key, localFile)];
                                         case 1:
                                             result = _a.sent();
-                                            imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                            imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                             imgsArr.push(imgSrc);
                                             fs.unlinkSync(localFile);
                                             resolve();
@@ -446,7 +446,7 @@ exports.addGood = function (req, res, next) {
                                             case 0: return [4, oss_1.default.put(key, localFile)];
                                             case 1:
                                                 result = _a.sent();
-                                                imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                                imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                                 imgsArr.push(imgSrc);
                                                 fs.unlinkSync(localFile);
                                                 resolve();
@@ -505,7 +505,7 @@ exports.editGood = function (req, res, next) {
                                     case 0: return [4, oss_1.default.put(key, localFile)];
                                     case 1:
                                         result = _a.sent();
-                                        imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                        imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                         imgsArr.push(imgSrc);
                                         fs.unlinkSync(localFile);
                                         resolve();
@@ -554,7 +554,7 @@ exports.editGood = function (req, res, next) {
                                         case 0: return [4, oss_1.default.put(key, localFile)];
                                         case 1:
                                             result = _a.sent();
-                                            imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                            imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                             imgsArr.push(imgSrc);
                                             fs.unlinkSync(localFile);
                                             resolve();
@@ -936,7 +936,7 @@ exports.uploadImg = function (req, res, next) {
                         case 0: return [4, oss_1.default.put(key, localFile)];
                         case 1:
                             result = _a.sent();
-                            imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                            imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                             fs.unlinkSync(localFile);
                             if (good_id)
                                 good_1.default.findOne({ good_id: mongoose.Types.ObjectId(good_id) })
