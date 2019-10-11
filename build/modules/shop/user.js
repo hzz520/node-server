@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
+var adminMongodb_1 = require("../../config/adminMongodb");
 var moment = require("moment");
 var userSchema = new mongoose_1.Schema({
     _id: mongoose_1.Schema.Types.ObjectId,
@@ -20,7 +21,7 @@ var userSchema = new mongoose_1.Schema({
     },
     avatar: {
         type: String,
-        default: 'http://egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg'
+        default: '//egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg'
     },
     meta: {
         createAt: Date,
@@ -36,4 +37,4 @@ userSchema.pre('save', function (next) {
     }
     next();
 });
-exports.default = mongoose_1.model('User', userSchema);
+exports.default = adminMongodb_1.connection.model('User', userSchema);

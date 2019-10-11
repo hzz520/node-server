@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
+var adminMongodb_1 = require("../../config/adminMongodb");
 var moment = require("moment");
 var goodSchema = new mongoose_1.Schema({
     _id: mongoose_1.Schema.Types.ObjectId,
@@ -42,4 +43,4 @@ goodSchema.pre('update', function (next) {
     this.update({}, { $set: { 'meta.updateAt': moment() } });
     next();
 });
-exports.default = mongoose_1.model('Good', goodSchema);
+exports.default = adminMongodb_1.connection.model('Good', goodSchema);

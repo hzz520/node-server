@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
 var moment = require("moment");
+var adminMongodb_1 = require("../../config/adminMongodb");
 var activiteSchema = new mongoose_1.Schema({
     _id: mongoose_1.Schema.Types.ObjectId,
     activite_id: mongoose_1.Schema.Types.ObjectId,
@@ -22,4 +23,4 @@ activiteSchema.pre('save', function (next) {
     }
     next();
 });
-exports.default = mongoose_1.model('Activite', activiteSchema);
+exports.default = adminMongodb_1.connection.model('Activite', activiteSchema);

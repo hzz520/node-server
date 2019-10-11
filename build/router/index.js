@@ -1,22 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose = require("mongoose");
 var blog = require("../controllers/apis/blog");
 var shop = require("../controllers/apis/shop");
 var wx = require("../controllers/apis/wx");
 var test = require("../controllers/apis/test");
 var index_1 = require("../controllers/views/index");
-var Flog = require("../middleware/flog/index");
-mongoose.connect("mongodb://aliyun:1h2z3z2325076@127.0.0.1:27017/wxShop?authSource=admin", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-mongoose.connection.on('error', function () {
-    Flog.getLog('MONGDB').err('Mongoose connection error');
-});
-mongoose.connection.on('connected', function () {
-    Flog.getLog('MONGDB').debug('Mongoose connection success');
-});
 var rules = {
     '/': index_1.default('index'),
     '/boom': index_1.default('boom'),
