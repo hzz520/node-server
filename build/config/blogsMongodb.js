@@ -11,8 +11,8 @@ exports.connection = mongoose.createConnection("mongodb://127.0.0.1:27017", {
     useUnifiedTopology: true
 });
 exports.connection.on('error', function () {
-    Flog.getLog('MONGDB').err('subMongoose connection error');
+    Flog.getLog('MONGDB').err('mongoose connection blogs error');
 });
 exports.connection.on('connected', function () {
-    Flog.getLog('MONGDB').debug('subMongoose connection success');
+    Flog.getLog('MONGDB').debug('mongoose connection blogs success');
 });
