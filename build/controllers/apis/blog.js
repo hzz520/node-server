@@ -178,7 +178,7 @@ exports.publish = function (req, res, next) {
                                 case 0: return [4, oss_1.default.put(key_1, localFile_1)];
                                 case 1:
                                     result = _a.sent();
-                                    imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                    imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                     article = new articleList_1.default({
                                         _id: new mongoose.Types.ObjectId(),
                                         name: name,
@@ -286,7 +286,7 @@ exports.updateUserInfo = function (req, res, next) {
     var _a = req.body, name = _a.name, avatar = _a.avatar, oldPassword = _a.oldPassword, newPassword = _a.newPassword, type = _a.type;
     if (avatar != '' && type == 'avatar') {
         users_1.default.findOne({ name: name }).exec(function (err, response) {
-            if (response.avatar != "http://egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg")
+            if (response.avatar != "//egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg")
                 co(function () {
                     var result;
                     return __generator(this, function (_a) {
@@ -316,7 +316,7 @@ exports.updateUserInfo = function (req, res, next) {
                                 case 0: return [4, oss_1.default.put(key_2, localFile_2)];
                                 case 1:
                                     result = _a.sent();
-                                    imageSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name;
+                                    imageSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                     fs.unlinkSync(filePath);
                                     response.avatar = imageSrc;
                                     response.save(function (err, response1) {

@@ -172,7 +172,7 @@ export const publish = (req,res,next) => {
                         let result = yield client.put(key, localFile)
 
                         
-                        let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                        let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
 
                         let article = new ArticleList({
                             _id:new mongoose.Types.ObjectId(),
@@ -291,7 +291,7 @@ export const updateUserInfo = (req,res,next) => {
 
     if(avatar != ''&& type=='avatar'){
          Users.findOne({name:name}).exec(function(err,response: blogUserSchema){
-                if(response.avatar != "http://egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg")
+                if(response.avatar != "//egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg")
                     co(function*(){
                         let result = yield client.delete(response.avatar.slice(response.avatar.lastIndexOf('/')+1)) 
                     })
@@ -313,7 +313,7 @@ export const updateUserInfo = (req,res,next) => {
                         co(function* () {
                             let result = yield client.put(key, localFile)
                         
-                            let imageSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                            let imageSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
 
                             fs.unlinkSync(filePath)
                             

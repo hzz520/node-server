@@ -168,7 +168,7 @@ export const projectEdit = (req,res,next) => {
                 })
                 co(function* (){
                     var result = yield client.put(key, localFile)
-                    let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                    let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                     fs.unlinkSync(localFile)
                     Project.findOne({project_id:project_id.toString()})
                         .exec((err,response: shopProjectSchema) => {
@@ -350,7 +350,7 @@ export const addGood = (req,res,next) => {
                     var localFile = files.files[0].path
                     co(function* () {
                         var result = yield client.put(key, localFile)
-                        let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                        let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                         imgsArr.push(imgSrc)
                         fs.unlinkSync(localFile)
                         resolve()
@@ -379,7 +379,7 @@ export const addGood = (req,res,next) => {
                         promise[0] = new Promise((resolve, reject) => {
                             co(function* () {
                                 var result = yield client.put(key, localFile)
-                                let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                                let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                                 imgsArr.push(imgSrc)
                                 fs.unlinkSync(localFile)
                                 resolve()
@@ -396,7 +396,7 @@ export const addGood = (req,res,next) => {
                             return new Promise((resolve, reject) => {
                                 co(function* () {
                                     var result = yield client.put(key, localFile)
-                                    let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                                    let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                                     imgsArr.push(imgSrc)
                                     fs.unlinkSync(localFile)
                                     resolve()
@@ -448,7 +448,7 @@ export const editGood = (req,res,next) => {
                     promise[0] = new Promise((resolve, reject) => {
                         co(function* () {
                             var result = yield client.put(key, localFile)
-                            let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                            let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                             imgsArr.push(imgSrc)
                             fs.unlinkSync(localFile)
                             resolve()
@@ -489,7 +489,7 @@ export const editGood = (req,res,next) => {
                         return new Promise((resolve, reject) => {
                             co(function* () {
                                 var result = yield client.put(key, localFile)
-                                let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                                let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                                 imgsArr.push(imgSrc)
                                 fs.unlinkSync(localFile)
                                 resolve()
@@ -906,7 +906,7 @@ export const uploadImg = (req,res,next) => {
 
             co(function* (){
                 var result = yield client.put(key, localFile)
-                let imgSrc = 'http://egret.oss-cn-beijing.aliyuncs.com/' + result.name
+                let imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name
                 fs.unlinkSync(localFile)
                 if (good_id)
                     Good.findOne({good_id:mongoose.Types.ObjectId(good_id)}) 
