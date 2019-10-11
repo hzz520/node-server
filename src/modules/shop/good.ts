@@ -1,8 +1,10 @@
 import { 
-    Schema, 
-    model,
+    Schema,
     Document
 } from 'mongoose'
+import { 
+    connection
+} from '../../config/adminMongodb'
 import * as moment from 'moment'
 
 export interface shopGoodSchema extends Document {
@@ -67,4 +69,4 @@ goodSchema.pre('update', function (next) {
 })
 
 
-export default model('Good',goodSchema)
+export default connection.model('Good',goodSchema)

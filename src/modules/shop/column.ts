@@ -1,9 +1,11 @@
 import { 
-    Schema, 
-    model,
+    Schema,
     Document
 } from 'mongoose'
 import * as moment from 'moment'
+import { 
+    connection
+} from '../../config/adminMongodb'
 
 export interface shopColumnSchema extends Document {
     _id: string
@@ -39,4 +41,4 @@ columnSchema.pre('save', function (next) {
     next()
 })
 
-export default model('Column',columnSchema)
+export default connection.model('Column',columnSchema)

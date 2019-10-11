@@ -4,7 +4,7 @@ import {
     Document
 } from 'mongoose'
 
-import { connection } from '../../config/subConnnection'
+import { connection } from '../../config/blogsMongodb'
 
 declare module "mongoose" {
     interface Document {
@@ -33,7 +33,7 @@ const usersSchemas: Schema<blogUserSchema> = new Schema({
     password:String,
     avatar:{
         type:String,
-        default:'http://egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg'
+        default:'//egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg'
     },
     articles:[{
         type:Schema.Types.ObjectId,

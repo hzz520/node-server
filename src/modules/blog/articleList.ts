@@ -4,7 +4,7 @@ import {
 } from 'mongoose'
 import * as moment from 'moment'
 
-import { connection } from '../../config/subConnnection'
+import { connection } from '../../config/blogsMongodb'
 
 declare module "mongoose" {
     interface Document {

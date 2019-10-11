@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
+var adminMongodb_1 = require("../../config/adminMongodb");
 var moment = require("moment");
 var projectSchema = new mongoose_1.Schema({
     project_id: String,
@@ -20,4 +21,4 @@ projectSchema.pre('save', function (next) {
     }
     next();
 });
-exports.default = mongoose_1.model('Project', projectSchema);
+exports.default = adminMongodb_1.connection.model('Project', projectSchema);

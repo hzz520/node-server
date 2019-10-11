@@ -1,8 +1,10 @@
 import { 
     Schema, 
-    model,
     Document
 } from 'mongoose'
+import { 
+    connection
+} from '../../config/adminMongodb'
 import * as moment from 'moment'
 
 export interface shopUserDocument extends Document {
@@ -37,7 +39,7 @@ const userSchema: Schema<shopUserDocument> = new Schema({
     },
     avatar:{
         type:String,
-        default:'http://egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg'
+        default:'//egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg'
     },
     meta:{
         createAt: Date,
@@ -54,5 +56,5 @@ userSchema.pre('save',function(next){
     next()
 })
 
-export default model('User',userSchema)
+export default connection.model('User',userSchema)
 

@@ -3,7 +3,7 @@ import {
     Document
 } from 'mongoose'
 
-import { connection } from '../../config/subConnnection'
+import { connection } from '../../config/blogsMongodb'
 
 export interface blogCommentSchema extends Document {
     _id: string

@@ -8,6 +8,7 @@ var Flog = require("./middleware/flog/index");
 var favicon = require("serve-favicon");
 var fcdn_1 = require("./middleware/fcdn");
 var index_1 = require("./router/index");
+require("./config/redis");
 var app = express();
 app.use(bodyParser.json({
     inflate: true,

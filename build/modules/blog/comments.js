@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
-var subConnnection_1 = require("../../config/subConnnection");
+var blogsMongodb_1 = require("../../config/blogsMongodb");
 var commentSchema = new mongoose_1.Schema({
     _id: mongoose_1.Schema.Types.ObjectId,
     reply: {
@@ -18,4 +18,4 @@ var commentSchema = new mongoose_1.Schema({
             ref: 'replybyothers'
         }]
 });
-exports.default = subConnnection_1.connection.model('comments', commentSchema);
+exports.default = blogsMongodb_1.connection.model('comments', commentSchema);
