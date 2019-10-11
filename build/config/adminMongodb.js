@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
 var Flog = require("../middleware/flog/index");
-exports.connection = mongoose.createConnection("mongodb://127.0.0.1:27017", {
+exports.connection = mongoose.createConnection("mongodb://hzz.letin2586.com:27017", {
     user: 'aliyun',
     pass: '1h2z3z2325076',
     dbName: 'wxShop',
