@@ -18,12 +18,12 @@
     #end
     #if ($prescripts)
         #foreach($item in $prescripts)
-    <script src="$item" type='text/javascript' defer="defer"></script>
+    <script src="$item" type='text/javascript'></script>
         #end
     #end
     #if ($preversionscripts)
         #foreach($item in $preversionscripts)
-    <script src="$item" type='text/javascript' async></script>
+    <script src="$item" type='text/javascript'></script>
         #end
     #end
     #if ($headscripts)
@@ -69,12 +69,12 @@
 #end
 #if ($scripts)
     #foreach($item in $scripts)
-    <script src='$item' type='text/javascript' async></script>
+    <script src='$item' type='text/javascript'></script>
     #end
 #end
 #if($versionScripts)
     #foreach($item in $versionScripts)
-    <script src='$fcdn.outPath($item)' type='text/javascript' async></script>
+    <script src='$fcdn.outPath($item)' type='text/javascript'></script>
     #end
 #end
 </body>
