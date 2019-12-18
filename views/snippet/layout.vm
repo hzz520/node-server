@@ -23,7 +23,7 @@
     #end
     #if ($preversionscripts)
         #foreach($item in $preversionscripts)
-    <script src="$item" type='text/javascript'></script>
+    <script src="$item" type='text/javascript' async></script>
         #end
     #end
     #if ($headscripts)
@@ -69,12 +69,12 @@
 #end
 #if ($scripts)
     #foreach($item in $scripts)
-    <script src='$item' type='text/javascript' defer="defer"></script>
+    <script src='$item' type='text/javascript' async></script>
     #end
 #end
 #if($versionScripts)
     #foreach($item in $versionScripts)
-    <script src='$fcdn.outPath($item)' type='text/javascript' defer="defer"></script>
+    <script src='$fcdn.outPath($item)' type='text/javascript' async></script>
     #end
 #end
 </body>
