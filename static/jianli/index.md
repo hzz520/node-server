@@ -230,7 +230,7 @@
     github：<a href="https://github.com/hzz520">https://github.com/hzz520</a>
     </div>
     <div class="item">
-    自建站点：<a href="http://hzz520.site/">http://hzz520.site/</a>
+    自建站点：<a href="https://hzz520.site/">https://hzz520.site/</a>
     </div>
     <div class="skills">
         <p>1. nginx路由分发</p>
