@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
 var adminMongodb_1 = require("../../config/adminMongodb");
-var moment = require("moment");
+var moment_1 = __importDefault(require("moment"));
 var userSchema = new mongoose_1.Schema({
     _id: mongoose_1.Schema.Types.ObjectId,
     username: String,
@@ -30,10 +33,10 @@ var userSchema = new mongoose_1.Schema({
 });
 userSchema.pre('save', function (next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = moment();
+        this.meta.createAt = this.meta.updateAt = moment_1.default();
     }
     else {
-        this.meta.updateAt = moment();
+        this.meta.updateAt = moment_1.default();
     }
     next();
 });

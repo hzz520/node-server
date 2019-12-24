@@ -35,10 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var sha1 = require("sha1");
-var Flog = require("../../middleware/flog/index");
-var request = require("request");
+var sha1_1 = __importDefault(require("sha1"));
+var index_1 = __importDefault(require("../../middleware/flog/index"));
+var request_1 = __importDefault(require("request"));
 exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var grant_type, appid, secret;
     return __generator(this, function (_a) {
@@ -46,15 +49,15 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
         appid = 'wx107561c879897389';
         secret = '4ce9a2107221d416eeaf937afc20d8f1';
         try {
-            request('https://api.weixin.qq.com/cgi-bin/token?grant_type=' + grant_type + '&appid=' + appid + '&secret=' + secret, function (err, response, body) {
+            request_1.default('https://api.weixin.qq.com/cgi-bin/token?grant_type=' + grant_type + '&appid=' + appid + '&secret=' + secret, function (err, response, body) {
                 if (err) {
-                    Flog.getLog('ERROR').err(err);
+                    index_1.default.getLog('ERROR').err(err);
                     return res.json({ code: 1, msg: err });
                 }
                 var access_token = JSON.parse(body).access_token;
-                request('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + access_token + '&type=jsapi', function (err, response, body) {
+                request_1.default('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + access_token + '&type=jsapi', function (err, response, body) {
                     if (err) {
-                        Flog.getLog('ERROR').err(err);
+                        index_1.default.getLog('ERROR').err(err);
                         return res.json({ code: 1, msg: err });
                     }
                     var jsapi_ticket = JSON.parse(body).ticket;
@@ -62,7 +65,7 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
                     var timestamp = Math.floor(new Date().getTime() / 1000);
                     var url = req.body.url;
                     var str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + nonce_str + '&timestamp=' + timestamp + '&url=' + url;
-                    var signature = sha1(str);
+                    var signature = sha1_1.default(str);
                     res.send({
                         appId: appid,
                         timestamp: timestamp,
@@ -73,7 +76,7 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
             });
         }
         catch (error) {
-            Flog.getLog('ERROR').err(error);
+            index_1.default.getLog('ERROR').err(error);
         }
         return [2];
     });

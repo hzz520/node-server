@@ -1,5 +1,8 @@
 "use strict";
-var log4js_1 = require("./log4js");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var log4js_1 = __importDefault(require("./log4js"));
 function getStr(msg, req, res) {
     var array = msg.split(' ');
     var tokenMap = {

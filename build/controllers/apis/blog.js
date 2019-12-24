@@ -26,24 +26,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
-var fs = require("fs");
-var mongoose = require("mongoose");
-var uuid = require("uuid");
-var moment = require("moment");
-var multiparty = require("multiparty");
-var co = require("co");
-var oss_1 = require("../../config/oss");
-var articleList_1 = require("../../modules/blog/articleList");
-var comments_1 = require("../../modules/blog/comments");
-var replyByOters_1 = require("../../modules/blog/replyByOters");
-var users_1 = require("../../modules/blog/users");
+var path_1 = __importDefault(require("path"));
+var fs_1 = __importDefault(require("fs"));
+var mongoose_1 = __importDefault(require("mongoose"));
+var uuid_1 = __importDefault(require("uuid"));
+var moment_1 = __importDefault(require("moment"));
+var multiparty_1 = __importDefault(require("multiparty"));
+var co_1 = __importDefault(require("co"));
+var oss_1 = __importDefault(require("../../config/oss"));
+var articleList_1 = __importDefault(require("../../modules/blog/articleList"));
+var comments_1 = __importDefault(require("../../modules/blog/comments"));
+var replyByOters_1 = __importDefault(require("../../modules/blog/replyByOters"));
+var users_1 = __importDefault(require("../../modules/blog/users"));
 exports.articleList = function (req, res, next) {
     if (req.body._id) {
         var _a = req.body, _id_1 = _a._id, page = _a.page, limitNum = _a.limitNum;
         var limitNums_1 = limitNum || 5;
-        var id_1 = mongoose.Types.ObjectId(_id_1);
+        var id_1 = mongoose_1.default.Types.ObjectId(_id_1);
         var skip_1 = limitNums_1 * (page - 1);
         var count_1 = 0;
         articleList_1.default.findOne({
@@ -137,7 +140,7 @@ exports.articleList = function (req, res, next) {
         else {
             match = {};
         }
-        users_1.default.findOne({ _id: mongoose.Types.ObjectId(req.body.userId) })
+        users_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(req.body.userId) })
             .populate({
             path: 'articles',
             match: match,
@@ -162,16 +165,16 @@ exports.articleList = function (req, res, next) {
     }
 };
 exports.publish = function (req, res, next) {
-    var form = new multiparty.Form({ uploadDir: path.resolve(__dirname, '../') });
+    var form = new multiparty_1.default.Form({ uploadDir: path_1.default.resolve(__dirname, '../') });
     form.parse(req, function (err, fields, files) {
         var _a = JSON.parse(fields.data[0]), name = _a.name, title = _a.title, content = _a.content, category = _a.category, pv = _a.pv, _id = _a._id;
         var cover = JSON.stringify(files, null, 2);
         users_1.default.findOne({ name: name }).exec(function (err, response) {
             if (!err && response) {
                 if (Object.keys(files).length > 0) {
-                    var key_1 = uuid.v1();
+                    var key_1 = uuid_1.default.v1();
                     var localFile_1 = files.cover[0].path;
-                    co(function () {
+                    co_1.default(function () {
                         var result, imgSrc, article;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
@@ -180,7 +183,7 @@ exports.publish = function (req, res, next) {
                                     result = _a.sent();
                                     imgSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
                                     article = new articleList_1.default({
-                                        _id: new mongoose.Types.ObjectId(),
+                                        _id: new mongoose_1.default.Types.ObjectId(),
                                         name: name,
                                         title: title,
                                         content: content,
@@ -191,7 +194,7 @@ exports.publish = function (req, res, next) {
                                         if (!err) {
                                             response.articles.push(article._id);
                                             response.save(function (err, response1) {
-                                                fs.unlinkSync(localFile_1);
+                                                fs_1.default.unlinkSync(localFile_1);
                                                 res.json({ code: 0, message: '发布成功' });
                                             });
                                         }
@@ -200,13 +203,13 @@ exports.publish = function (req, res, next) {
                             }
                         });
                     }).catch(function (err) {
-                        fs.unlinkSync(localFile_1);
+                        fs_1.default.unlinkSync(localFile_1);
                         res.send({ code: 1, message: '上传图片失败', error: JSON.stringify(err) });
                     });
                 }
                 else {
                     var article_1 = new articleList_1.default({
-                        _id: new mongoose.Types.ObjectId(),
+                        _id: new mongoose_1.default.Types.ObjectId(),
                         name: name,
                         title: title,
                         content: content,
@@ -256,7 +259,7 @@ exports.register = function (req, res, next) {
         }
         else {
             var user = new users_1.default({
-                _id: new mongoose.Types.ObjectId(),
+                _id: new mongoose_1.default.Types.ObjectId(),
                 name: name,
                 password: password
             });
@@ -287,7 +290,7 @@ exports.updateUserInfo = function (req, res, next) {
     if (avatar != '' && type == 'avatar') {
         users_1.default.findOne({ name: name }).exec(function (err, response) {
             if (response.avatar != "//egret.oss-cn-beijing.aliyuncs.com/i_4_2246533969x3386744293_21.jpg")
-                co(function () {
+                co_1.default(function () {
                     var result;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
@@ -298,18 +301,18 @@ exports.updateUserInfo = function (req, res, next) {
                         }
                     });
                 });
-            var fileName = uuid.v1();
+            var fileName = uuid_1.default.v1();
             var filePath = './' + fileName + '.png';
             var base64Data = avatar.replace(/^data:image\/[.|\w]+;base64,/, '');
             var bufferData = new Buffer(base64Data, 'base64');
-            fs.writeFile(filePath, bufferData, function (err) {
+            fs_1.default.writeFile(filePath, bufferData, function (err) {
                 if (err) {
                     res.send({ status: '102', msg: '文件写入失败' });
                 }
                 else {
                     var localFile_2 = filePath;
                     var key_2 = fileName;
-                    co(function () {
+                    co_1.default(function () {
                         var result, imageSrc;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
@@ -317,7 +320,7 @@ exports.updateUserInfo = function (req, res, next) {
                                 case 1:
                                     result = _a.sent();
                                     imageSrc = '//egret.oss-cn-beijing.aliyuncs.com/' + result.name;
-                                    fs.unlinkSync(filePath);
+                                    fs_1.default.unlinkSync(filePath);
                                     response.avatar = imageSrc;
                                     response.save(function (err, response1) {
                                         res.json({ code: 0, message: '更新头像成功', data: {
@@ -333,7 +336,7 @@ exports.updateUserInfo = function (req, res, next) {
                             }
                         });
                     }).catch(function (err) {
-                        fs.unlinkSync(filePath);
+                        fs_1.default.unlinkSync(filePath);
                         res.send({ code: 1, message: '更新头像失败' });
                     });
                 }
@@ -366,7 +369,7 @@ exports.loginOut = function (req, res, next) {
 };
 exports.comments = function (req, res, next) {
     var _a = req.body, _id = _a._id, message = _a.message, type = _a.type, answerBy = _a.answerBy, answerTo = _a.answerTo, limitNum = _a.limitNum, userId = _a.userId;
-    var id = mongoose.Types.ObjectId(_id);
+    var id = mongoose_1.default.Types.ObjectId(_id);
     if (type == 'article') {
         articleList_1.default.findOne({ _id: id })
             .exec(function (err, response) {
@@ -375,12 +378,12 @@ exports.comments = function (req, res, next) {
             }
             else {
                 var comment_1 = new comments_1.default({
-                    _id: new mongoose.Types.ObjectId(),
+                    _id: new mongoose_1.default.Types.ObjectId(),
                     reply: {
                         name: answerBy,
-                        avatar: mongoose.Types.ObjectId(userId),
+                        avatar: mongoose_1.default.Types.ObjectId(userId),
                         message: message,
-                        time: moment().format('YYYY-MM-DD HH:mm')
+                        time: moment_1.default().format('YYYY-MM-DD HH:mm')
                     }
                 });
                 comment_1.save(function (err) {
@@ -433,12 +436,12 @@ exports.comments = function (req, res, next) {
                 res.json({ code: 1, message: 'id不存在' });
             else {
                 var replybyother_1 = new replyByOters_1.default({
-                    _id: new mongoose.Types.ObjectId(),
+                    _id: new mongoose_1.default.Types.ObjectId(),
                     answerBy: answerBy,
                     answerTo: answerTo,
-                    avatar: mongoose.Types.ObjectId(userId),
+                    avatar: mongoose_1.default.Types.ObjectId(userId),
                     message: message,
-                    time: moment().format('YYYY-MM-DD HH:mm')
+                    time: moment_1.default().format('YYYY-MM-DD HH:mm')
                 });
                 replybyother_1.save(function (err) {
                     if (!err) {
@@ -478,7 +481,7 @@ exports.commentspage = function (req, res, next) {
     var _a = req.body, page = _a.page, limitNum = _a.limitNum, _id = _a._id;
     var limitNums = limitNum || 5;
     var skip = limitNums * (page - 1);
-    var id = mongoose.Types.ObjectId(_id);
+    var id = mongoose_1.default.Types.ObjectId(_id);
     var pageNum = 0;
     var count = 0;
     articleList_1.default.findOne({ _id: id })
@@ -528,18 +531,18 @@ exports.commentspage = function (req, res, next) {
 exports.del = function (req, res, next) {
     var _a = req.body, articleId = _a.articleId, commentId = _a.commentId, subcommentId = _a.subcommentId, type = _a.type, key = _a.key;
     if (type == 'comment') {
-        articleList_1.default.findOne({ _id: mongoose.Types.ObjectId(articleId) })
+        articleList_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(articleId) })
             .exec(function (err, response) {
             response.comments.splice(key, 1);
             response.save(function (err, response1) {
-                comments_1.default.findOne({ _id: mongoose.Types.ObjectId(commentId) })
+                comments_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(commentId) })
                     .exec(function (err, response2) {
                     if (response2.replyByOther.length > 0)
                         response2.replyByOther.forEach(function (el, i, arr) {
-                            replyByOters_1.default.findOneAndRemove({ _id: mongoose.Types.ObjectId(el) }, function (err, response3) {
+                            replyByOters_1.default.findOneAndRemove({ _id: mongoose_1.default.Types.ObjectId(el) }, function (err, response3) {
                             });
                         });
-                    comments_1.default.findOneAndRemove({ _id: mongoose.Types.ObjectId(commentId) }, function (err, response4) {
+                    comments_1.default.findOneAndRemove({ _id: mongoose_1.default.Types.ObjectId(commentId) }, function (err, response4) {
                         res.json({ code: 0, message: '删除成功' });
                     });
                 });
@@ -547,12 +550,12 @@ exports.del = function (req, res, next) {
         });
     }
     else {
-        comments_1.default.findOne({ _id: mongoose.Types.ObjectId(commentId) })
+        comments_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(commentId) })
             .exec(function (err, response) {
             if (response) {
                 response.replyByOther.splice(key, 1);
                 response.save(function (err, response) {
-                    replyByOters_1.default.findOneAndRemove({ _id: mongoose.Types.ObjectId(subcommentId) }, function (err) {
+                    replyByOters_1.default.findOneAndRemove({ _id: mongoose_1.default.Types.ObjectId(subcommentId) }, function (err) {
                         if (!err) {
                             res.json({ code: 0, message: '删除成功', count: response.replyByOther.lenth });
                         }
@@ -567,11 +570,11 @@ exports.del = function (req, res, next) {
 };
 exports.addOneComment = function (req, res, next) {
     var _a = req.body, page = _a.page, _id = _a._id, limitNum = _a.limitNum;
-    articleList_1.default.findOne({ _id: mongoose.Types.ObjectId(_id) })
+    articleList_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(_id) })
         .exec(function (err, response) {
         if (response) {
             var temp = response.comments[response.comments.length - page * (limitNum || 5)];
-            comments_1.default.findOne({ _id: mongoose.Types.ObjectId(temp) })
+            comments_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(temp) })
                 .populate('replyByOther')
                 .exec(function (err, response) {
                 if (response) {
@@ -589,14 +592,14 @@ exports.addOneComment = function (req, res, next) {
 };
 exports.delArticle = function (req, res, next) {
     var _a = req.body, articleId = _a.articleId, limitNum = _a.limitNum, page = _a.page, type = _a.type, userId = _a.userId, index = _a.index;
-    users_1.default.findOne({ _id: mongoose.Types.ObjectId(userId) })
+    users_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(userId) })
         .exec(function (err, response) {
         response.articles.splice(response.articles.length - 1 - index, 1);
         response.save(function (err, response) {
-            articleList_1.default.findOne({ _id: mongoose.Types.ObjectId(articleId) }).exec(function (err, response) {
+            articleList_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(articleId) }).exec(function (err, response) {
                 if (!err) {
                     if (response.cover != '' && response.cover != undefined) {
-                        co(function () {
+                        co_1.default(function () {
                             var result;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
@@ -611,11 +614,11 @@ exports.delArticle = function (req, res, next) {
                     }
                     if (response.comments.length > 0) {
                         response.comments.forEach(function (el, index, arr) {
-                            comments_1.default.findOneAndRemove({ _id: mongoose.Types.ObjectId(el) }, function (err, response) {
+                            comments_1.default.findOneAndRemove({ _id: mongoose_1.default.Types.ObjectId(el) }, function (err, response) {
                                 if (!err) {
                                     if (response.replyByOther.length > 0) {
                                         response.replyByOther.forEach(function (el, index, arr) {
-                                            replyByOters_1.default.findOneAndRemove({ _id: mongoose.Types.ObjectId(el) }, function (err, response) {
+                                            replyByOters_1.default.findOneAndRemove({ _id: mongoose_1.default.Types.ObjectId(el) }, function (err, response) {
                                             });
                                         });
                                     }
@@ -630,8 +633,8 @@ exports.delArticle = function (req, res, next) {
                     else if (req.body.category == '2') {
                         match_1 = { category: '2' };
                     }
-                    articleList_1.default.findOneAndRemove({ _id: mongoose.Types.ObjectId(articleId) }, function (err, response) {
-                        users_1.default.findOne({ _id: mongoose.Types.ObjectId(userId) })
+                    articleList_1.default.findOneAndRemove({ _id: mongoose_1.default.Types.ObjectId(articleId) }, function (err, response) {
+                        users_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(userId) })
                             .populate({
                             path: 'ArticleList',
                             match: match_1,
@@ -641,7 +644,7 @@ exports.delArticle = function (req, res, next) {
                         })
                             .exec(function (err, response) {
                             var count = response.articles.length;
-                            users_1.default.findOne({ _id: mongoose.Types.ObjectId(userId) })
+                            users_1.default.findOne({ _id: mongoose_1.default.Types.ObjectId(userId) })
                                 .populate({
                                 path: 'articles',
                                 match: match_1,

@@ -121,11 +121,12 @@
     <p>现住地址：天通苑西一区</p>
     <p>联系电话：18612213010</p>
     <p>电子邮件：1013452861@qq.com</p>
+    <p>专业：高分子材料与工程</p>
 </div>
 <div class="subtitle">教育情况</div>
 <div class="content jiaoyuqingkuang">
     <p>2011年9月-2015年7月</p>
-    <p>长春工业大学</p>
+    <p>长春工业大学(本科)</p>
 </div>
 <div class="subtitle">工作项目经历</div>
 <div class="comps">
@@ -184,8 +185,13 @@
         </div>
     </div>
     <div class="content tit">
-        <p>2016年8月-2018年4月</p>
-        <p>蓝港互动有限公司</p>
+        <p>2018年4月19日-2018年4月28日</p>
+        <p>北京创鑫旅程网络技术有限公司</p>
+    </div>
+    <div class='desc'>【工作描述】：高级前端工程师</div>
+    <div class="content tit">
+        <p>2016年8月-2018年3月</p>
+        <p>蓝港互动有限公司旗下(游匣互动北京科技有限公司)</p>
     </div>
     <div class='desc'>【工作描述】：火星财经官网，音浪官网开发，音浪app webview开发</div>
     <div class="project">
@@ -212,6 +218,11 @@
             <div class="item-duty">项目职责：负责商城的搭建和维护</div>
         </div>
     </div>
+    <div class="content tit">
+        <p>2015年7月-2016年1月</p>
+        <p>广东美涂士建材股份有限公司</p>
+    </div>
+    <div class='desc'>【工作描述】：技术员</div>
 </div>
 <div class="subtitle">技术成长</div>
 <div class="up">

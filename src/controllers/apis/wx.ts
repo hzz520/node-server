@@ -3,9 +3,9 @@ import {
     Response,
     NextFunction
 } from 'express'
-import * as sha1 from 'sha1'
-import * as Flog from '../../middleware/flog/index'
-import * as request from 'request'
+import sha1 from 'sha1'
+import Flog from '../../middleware/flog/index'
+import request from 'request'
 
 export const getWxJssdk = async (req: Request, res: Response, next: NextFunction) => {
     const grant_type = 'client_credential'

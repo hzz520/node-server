@@ -1,9 +1,11 @@
-import * as express from 'express'
+import { 
+    Router
+} from 'express'
 
-export default (view) => {
-    const router = express.Router()
+export default (view, reg = '/') => {
+    const router = Router()
 
-    router.get('/', (req, res, next) => {
+    router.get(reg, (req, res, next) => {
         res.render(view, {
             fcdn: req.fcdn
         })

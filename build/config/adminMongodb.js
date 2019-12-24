@@ -1,8 +1,18 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose = require("mongoose");
-var Flog = require("../middleware/flog/index");
-exports.connection = mongoose.createConnection("mongodb://hzz.letin2586.com:27017", {
+var mongoose_1 = __importDefault(require("mongoose"));
+var Flog = __importStar(require("../middleware/flog/index"));
+exports.connection = mongoose_1.default.createConnection("mongodb://hzz.letin2586.com:27017", {
     user: 'aliyun',
     pass: '1h2z3z2325076',
     dbName: 'wxShop',

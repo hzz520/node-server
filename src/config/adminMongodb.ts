@@ -1,4 +1,4 @@
-import * as  mongoose from 'mongoose'
+import mongoose from 'mongoose'
 import * as Flog from '../middleware/flog/index'
 
 export const connection = mongoose.createConnection(`mongodb://hzz.letin2586.com:27017`, {
