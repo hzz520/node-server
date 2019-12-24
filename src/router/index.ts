@@ -9,7 +9,8 @@ const rules = {
     '/boom': getRouter('boom'),
     '/blogs': getRouter('blogs'),
     '/admin': getRouter('admin'),
-    '/egret': getRouter('egret')
+    '/egret': getRouter('egret'),
+    '/watchSys': getRouter('admin')
 }
 
 export default (app) => {

@@ -1,4 +1,5 @@
-import * as mysql from 'mysql'
+import mysql from 'mysql'
+import Flog from '../middleware/flog/index'
 
 export const connectionPool = mysql.createPool({
     host: 'hzz.letin2586.com',

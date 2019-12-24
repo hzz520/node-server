@@ -1,4 +1,4 @@
-import * as OSS from 'ali-oss'
+import OSS from 'ali-oss'
 
 export default new OSS({
     region: 'oss-cn-beijing',

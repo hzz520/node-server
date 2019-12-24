@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
-var moment = require("moment");
+var moment_1 = __importDefault(require("moment"));
 var blogsMongodb_1 = require("../../config/blogsMongodb");
 var articleListSchemas = new mongoose_1.Schema({
     _id: mongoose_1.Schema.Types.ObjectId,
@@ -32,7 +35,7 @@ var articleListSchemas = new mongoose_1.Schema({
 });
 articleListSchemas.pre('save', function (next) {
     if (this.isNew) {
-        var t = moment();
+        var t = moment_1.default();
         this.time = {
             date: t,
             day: t.format('YYYY-MM-DD'),

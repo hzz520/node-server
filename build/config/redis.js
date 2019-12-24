@@ -1,7 +1,14 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var redis = require("redis");
-var Flog = require("../middleware/flog/index");
+var redis = __importStar(require("redis"));
+var Flog = __importStar(require("../middleware/flog/index"));
 var client = redis.createClient({
     host: 'hzz.letin2586.com',
     port: 6379,

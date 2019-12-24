@@ -26,20 +26,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
-var fs = require("fs");
-var mongoose = require("mongoose");
-var uuid = require("uuid");
-var multiparty = require("multiparty");
-var co = require("co");
-var md5 = require("md5");
-var oss_1 = require("../../config/oss");
-var user_1 = require("../../modules/shop/user");
-var projects_1 = require("../../modules/shop/projects");
-var good_1 = require("../../modules/shop/good");
-var column_1 = require("../../modules/shop/column");
-var activity_1 = require("../../modules/shop/activity");
+var path = __importStar(require("path"));
+var fs = __importStar(require("fs"));
+var mongoose = __importStar(require("mongoose"));
+var uuid = __importStar(require("uuid"));
+var multiparty = __importStar(require("multiparty"));
+var co = __importStar(require("co"));
+var md5 = __importStar(require("md5"));
+var oss_1 = __importDefault(require("../../config/oss"));
+var user_1 = __importDefault(require("../../modules/shop/user"));
+var projects_1 = __importDefault(require("../../modules/shop/projects"));
+var good_1 = __importDefault(require("../../modules/shop/good"));
+var column_1 = __importDefault(require("../../modules/shop/column"));
+var activity_1 = __importDefault(require("../../modules/shop/activity"));
 exports.verify = function (req, res, next) {
     if (!(/(projectList|login|authenticate|uploadImg|removeImg|uploadImgs)/g.test(req.path))) {
         var _a = req.cookies, username = _a.username, password = _a.password, project_id_1 = _a.project_id;

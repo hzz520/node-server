@@ -1,16 +1,27 @@
 "use strict";
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result["default"] = mod;
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var blog = require("../controllers/apis/blog");
-var shop = require("../controllers/apis/shop");
-var wx = require("../controllers/apis/wx");
-var test = require("../controllers/apis/test");
-var index_1 = require("../controllers/views/index");
+var blog = __importStar(require("../controllers/apis/blog"));
+var shop = __importStar(require("../controllers/apis/shop"));
+var wx = __importStar(require("../controllers/apis/wx"));
+var test = __importStar(require("../controllers/apis/test"));
+var index_1 = __importDefault(require("../controllers/views/index"));
 var rules = {
     '/': index_1.default('index'),
     '/boom': index_1.default('boom'),
     '/blogs': index_1.default('blogs'),
     '/admin': index_1.default('admin'),
-    '/egret': index_1.default('egret')
+    '/egret': index_1.default('egret'),
+    '/watchSys': index_1.default('admin')
 };
 exports.default = (function (app) {
     Object.keys(rules).map(function (key) {

@@ -1,11 +1,11 @@
 
-import * as path from 'path'
-import * as fs from 'fs'
-import * as mongoose from 'mongoose'
-import * as uuid from 'uuid'
-import * as moment from 'moment'
-import * as multiparty from 'multiparty'
-import * as co from 'co'
+import path from 'path'
+import fs from 'fs'
+import mongoose from 'mongoose'
+import uuid from 'uuid'
+import moment from 'moment'
+import multiparty from 'multiparty'
+import co from 'co'
 
 import client from '../../config/oss'
 

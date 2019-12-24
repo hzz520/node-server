@@ -2,7 +2,7 @@ import {
     Schema,
     Document
 } from 'mongoose'
-import * as moment from 'moment'
+import moment from 'moment'
 
 import { connection } from '../../config/blogsMongodb'
 

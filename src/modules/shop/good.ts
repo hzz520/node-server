@@ -5,7 +5,7 @@ import {
 import { 
     connection
 } from '../../config/adminMongodb'
-import * as moment from 'moment'
+import moment from 'moment'
 
 export interface shopGoodSchema extends Document {
     _id: string
