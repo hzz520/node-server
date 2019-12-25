@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var redis = __importStar(require("redis"));
 var Flog = __importStar(require("../middleware/flog/index"));
 var client = redis.createClient({
-    host: 'hzz.letin2586.com',
+    host: 'hzz520.site',
     port: 6379,
     password: '1h2z3z2325076'
 });

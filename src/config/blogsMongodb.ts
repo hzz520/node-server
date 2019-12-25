@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import * as Flog from '../middleware/flog/index'
-export const connection = mongoose.createConnection(`mongodb://hzz.letin2586.com:27017`, {
+export const connection = mongoose.createConnection(`mongodb://hzz520.site:27017`, {
     user: 'aliyun',
     pass: '1h2z3z2325076',
     dbName: 'shop',
