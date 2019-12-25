@@ -12,7 +12,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
 var Flog = __importStar(require("../middleware/flog/index"));
-exports.connection = mongoose_1.default.createConnection("mongodb://hzz.letin2586.com:27017", {
+exports.connection = mongoose_1.default.createConnection("mongodb://hzz520.site:27017", {
     user: 'aliyun',
     pass: '1h2z3z2325076',
     dbName: 'shop',
