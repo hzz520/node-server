@@ -64,18 +64,39 @@ exports.mysql = function (req, res) {
         }
     });
 };
-exports.ttt = function (req, res) {
+exports.insert = function (req, res) {
     mysql_1.connectionPool.getConnection(function (err, connection) { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
+        var _a, title, author, reg;
+        return __generator(this, function (_b) {
             if (err) {
                 connection.release();
                 index_1.default.getLog('MYSQL-FAIL').err(err.message);
                 res.json({ code: -1, msg: err });
             }
             else {
+                _a = req.method === 'GET' ? req.query : req.body, title = _a.title, author = _a.author;
+                if (!title || !author) {
+                    connection.release();
+                    return [2, res.json({
+                            code: -1,
+                            msg: '字段缺失'
+                        })];
+                }
+                reg = new RegExp(/<script>(.*)<\/script>/, 'g');
+                if (reg.test(title) || reg.test(author)) {
+                    connection.release();
+                    return [2, res.json({
+                            code: -1,
+                            msg: '非法提交'
+                        })];
+                }
                 connection.query({
-                    sql: 'INSERT INFO test(title,author,submission_date) VALUES(?,?,?)',
-                    values: ['111', 'hzz', '2019-01-08']
+                    sql: 'insert into test set ? ',
+                    values: {
+                        title: title,
+                        author: author,
+                        submission_date: new Date()
+                    }
                 }, function (err, result) {
                     if (err) {
                         connection.release();
@@ -85,7 +106,7 @@ exports.ttt = function (req, res) {
                     connection.release();
                     res.json({
                         code: 0,
-                        data: result
+                        msg: '数据插入成功'
                     });
                 });
             }
