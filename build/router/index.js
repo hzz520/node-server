@@ -18,6 +18,7 @@ var index_1 = __importDefault(require("../controllers/views/index"));
 var rules = {
     '/': index_1.default('index'),
     '/boom': index_1.default('boom'),
+    '/demo': index_1.default('demo'),
     '/blogs': index_1.default('blogs'),
     '/admin': index_1.default('admin'),
     '/egret': index_1.default('egret'),

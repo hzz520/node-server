@@ -7,6 +7,7 @@ import getRouter from '../controllers/views/index'
 const rules = {
     '/': getRouter('index'),
     '/boom': getRouter('boom'),
+    '/demo': getRouter('demo'),
     '/blogs': getRouter('blogs'),
     '/admin': getRouter('admin'),
     '/egret': getRouter('egret'),
