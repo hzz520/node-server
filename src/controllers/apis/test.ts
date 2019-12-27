@@ -3,10 +3,15 @@ import {
     MysqlError
 } from 'mysql'
 
+import {
+    Request,
+    Response
+} from 'express' 
+
 import { connectionPool } from '../../config/mysql'
 import Flog from '../../middleware/flog/index'
 
-export const mysql = (req, res) => {
+export const mysql = (req: Request, res: Response) => {
     connectionPool.getConnection((err: MysqlError, connection: PoolConnection) => {
         if (err) {
             connection.release()
@@ -31,16 +36,40 @@ export const mysql = (req, res) => {
     })
 }
 
-export const ttt = (req, res) => {
+export const insert = (req: Request, res: Response) => {
     connectionPool.getConnection(async (err, connection) => {
         if (err) {
             connection.release()
             Flog.getLog('MYSQL-FAIL').err(err.message);
             res.json({ code: -1, msg: err })
         } else {
+            let {
+                title,
+                author
+            } = req.method === 'GET' ? req.query : req.body
+
+            if (!title || !author) {
+                connection.release()
+                return res.json({
+                    code: -1,
+                    msg: '字段缺失'
+                })
+            }
+            let reg = new RegExp(/<script>(.*)<\/script>/, 'g')
+            if (reg.test(title) || reg.test(author)) {
+                connection.release()
+                return res.json({
+                    code: -1,
+                    msg: '非法提交'
+                })
+            }
             connection.query({
-                sql: 'INSERT INFO test(title,author,submission_date) VALUES(?,?,?)',
-                values: ['111', 'hzz', '2019-01-08']
+                sql: 'insert into test set ? ',
+                values: {
+                    title,
+                    author,
+                    submission_date: new Date()
+                }
             }, (err, result) => {
                 if (err) {
                     connection.release()
@@ -52,7 +81,7 @@ export const ttt = (req, res) => {
         
                 res.json({
                     code: 0,
-                    data: result
+                    msg: '数据插入成功'
                 })
             })
         }
