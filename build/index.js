@@ -52,4 +52,11 @@ app.use('/static', express_1.default.static(path_1.default.resolve(__dirname, '.
 app.use('/', express_1.default.static(path_1.default.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')));
 app.listen('8001', function () {
     index_1.default.getLog('STARTSERVER').debug('app is listenning http://localhost:8001');
+    process.on('uncaughtException', function (err) {
+        index_1.default.getLog('ERROR').err('err' + err);
+        process.exit(1);
+    });
+    process.on('unhandledRejection', function (err) {
+        index_1.default.getLog('ERROR').err('err1' + err);
+    });
 });
