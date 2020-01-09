@@ -5,7 +5,8 @@ import {
 
 import {
     Request,
-    Response
+    Response,
+    NextFunction
 } from 'express' 
 
 import { connectionPool } from '../../config/mysql'
@@ -26,6 +27,13 @@ export const mysql = (req: Request, res: Response) => {
                 }
 
                 connection.release()
+
+                setTimeout(() => {
+                    console.log(result.a.c)
+                    setTimeout(() => {
+                        console.log(result.a.c)
+                    }, 500)
+                }, 500)
         
                 res.json({
                     code: 0,
@@ -87,3 +95,4 @@ export const insert = (req: Request, res: Response) => {
         }
     })
 }
+

@@ -56,6 +56,12 @@ exports.mysql = function (req, res) {
                     return res.json({ code: 0, msg: err.message });
                 }
                 connection.release();
+                setTimeout(function () {
+                    console.log(result.a.c);
+                    setTimeout(function () {
+                        console.log(result.a.c);
+                    }, 500);
+                }, 500);
                 res.json({
                     code: 0,
                     data: result

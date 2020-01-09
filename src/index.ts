@@ -66,4 +66,11 @@ app.use('/', express.static(path.resolve( process.env.NODE_ENV === 'development'
 
 app.listen('8001',function () {
     Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001')
+    process.on('uncaughtException', (err) => {
+      Flog.getLog('ERROR').err('err' + err)
+      process.exit(1)
+    })
+    process.on('unhandledRejection', (err) => {
+      Flog.getLog('ERROR').err('err1' + err)
+    })
 })
