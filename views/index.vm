@@ -62,6 +62,6 @@
     <!--<a href="http://share.hellozhibo.com/v2/share/video/38393">音浪分享(php内嵌页)</a>-->
     <!-- <a href="/webIm.html">环信webim(请仅对超神的小贞哥聊天这是本人的音浪号)</a> -->
     <!-- <a class='disable'>小程序已上线(搜索小青生活馆)</a> -->
-    <p>(主要用的的技术有express、react、redux、webpack、mongodb、jquery等)</p>
+    <!--<p>(主要用的的技术有express、react、redux、webpack、mongodb、jquery等)</p>-->
 </body>
 </html>

@@ -1,4 +1,5 @@
 import express from 'express'
+import netjet from 'netjet'
 import path from 'path'
 import bodyParser  from 'body-parser'
 import cookie from 'cookie-parser'
@@ -54,6 +55,10 @@ app.engine('vm', (tpl, context, fn) => {
     fn(error, '')
   }
 })
+
+app.use(netjet({
+  cache: { max: 100 }
+}))
 
 router(app)
 
