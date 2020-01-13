@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var netjet_1 = __importDefault(require("netjet"));
 var path_1 = __importDefault(require("path"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
@@ -44,6 +45,9 @@ app.engine('vm', function (tpl, context, fn) {
         fn(error, '');
     }
 });
+app.use(netjet_1.default({
+    cache: { max: 100 }
+}));
 index_2.default(app);
 app.get('/jianli', function (req, res, next) {
     res.sendFile(path_1.default.resolve(__dirname, '../static/jianli/index.html'));
