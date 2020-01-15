@@ -11,6 +11,13 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="tel:+8618612213010"><div>18612213010</div></a>
+    <!--<a href="tel:+8618612213010">-->
+        <div id="phone">18612213010</div>
+    <!--</a>-->
+    <script>
+        document.getElementById('phone').addEventListener('click', () => {
+            window.location.href = "tel:+8618612213010"
+        }, false)
+    </script>
 </body>
 </html>
