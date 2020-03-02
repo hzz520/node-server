@@ -9,128 +9,21 @@
     <title>我的简历</title>
 </head>
 <body>
-    <style>
-    * {
-        padding: 0;
-        margin: 0;
-        line-height: 1;
-        color: #333;
-    }
-    .title {
-        font-size: 25px;
-        color: #000;
-        font-weight: 500;
-        text-align: center;
-        line-height: 80px;
-        border-bottom: 1px solid #ddd;
-    }
-    .subtitle {
-        padding: 15px 10px;
-        background: #CECECE;
-        margin: 15px 0;
-        font-size: 18px;
-        color: #333;
-        font-weight: bolder;
-    }
-
-    .content {
-        font-size: 0;
-    }
-
-    .content p
-        {
-        width: 50%;
-        display: inline-block;
-        font-weight:normal;
-        color: #333;
-        font-size: 15px;
-        line-height: 35px;
-        padding-left: 10px;
-        box-sizing: border-box;
-    }
-
-    .comps .desc {
-        color: #333;
-        font-size: 15px;
-        line-height: 35px;
-        padding-left: 10px;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-    }
-
-    .comps .tit,
-    .comps .content.tit p,
-    .comps .desc {
-        font-weight: 500;
-    }
-
-    .project {
-        margin-bottom: 20px;
-    }
-
-    .project:not(:last-of-type) {
-        padding-bottom: 30px;
-        border-bottom: 1px dashed #ddd;
-    }
-
-    .project .item {
-        background: #efefef;
-        padding: 10px;
-        font-size: 15px;
-    }
-
-    .project .item:not(:last-of-type) {
-        margin-bottom: 30px;
-    }
-
-    .project .item > div,
-    .project .item > div .right {
-        vertical-align: top;
-        line-height: 30px;
-        font-size: 15px;
-    }
-    .project .item > div .right {
-        display: inline-block;
-    }
-    .project .item > div .right p {
-        line-height: 30px;
-    }
-
-    .up {
-        padding: 10px;
-        background: #efefef;
-    }
-
-    .up,
-    .up .item,
-    .up .skills p  {
-        font-size: 15px;
-        line-height: 30px;
-    }
-    .up .item a {
-        color: blue;
-    }
-
-    .judge {
-        padding: 10px;
-        background: #efefef;
-    }
-    .judge p {
-        line-height: 30px;
-    }
-</style>
-<div class="title">web前端工程师</div>
+    <div class="title">web前端工程师</div>
 <div class="subtitle">基本信息</div>
-<div class="content jibenxinxi">
-    <p>姓名：黄忠贞</p>
-    <p>性别：男</p>
-    <p>籍贯：江西吉安</p>
-    <p>学历：大学本科</p>
-    <p>出生年月：1992年2月</p>
-    <p>现住地址：天通苑西一区</p>
-    <p>联系电话：18612213010</p>
-    <p>电子邮件：1013452861@qq.com</p>
-    <p>专业：高分子材料与工程</p>
+<div class="jibenxinxi">
+    <img class="avatar" src="https://chat-hzz.oss-cn-beijing.aliyuncs.com/huangzz.jpeg"/>
+    <div class="content">
+        <p>姓名：黄忠贞</p>
+        <p>性别：男</p>
+        <p>籍贯：江西吉安</p>
+        <p>学历：大学本科</p>
+        <p>出生年月：1992年2月</p>
+        <p>现住地址：浙江省杭州市余杭区</p>
+        <p>联系电话：18612213010</p>
+        <p>电子邮件：1013452861@qq.com</p>
+        <p>专业：高分子材料与工程</p>
+    </div>
 </div>
 <div class="subtitle">教育情况</div>
 <div class="content jiaoyuqingkuang">
@@ -140,7 +33,7 @@
 <div class="subtitle">工作项目经历</div>
 <div class="comps">
     <div class="content tit">
-        <p>2018年5月-至今</p>
+        <p>2018年5月-2020年2月</p>
         <p>北京城市网邻信息技术有限公司</p>
     </div>
     <div class='desc'>【工作描述】：58app租房发布业务 | 安居客app租房发布业务 | 58app租房保障 | 58商铺小程序 | 其他（运营活动）</div>
@@ -260,5 +153,128 @@
     <p>1.有较强的学习力，能够适应前端的变化，热爱前端技术。</p>
     <p>2.自我管理能力强，具备良好的执行力，能够很好的与同事进行沟通，实现产品和设计同事提出的功能需求</p>
 </div>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+        color: #333;
+    }
+    .title {
+        font-size: 25px;
+        color: #000;
+        font-weight: 500;
+        text-align: center;
+        line-height: 80px;
+        border-bottom: 1px solid #ddd;
+    }
+    .subtitle {
+        padding: 15px 10px;
+        background: #CECECE;
+        margin: 15px 0;
+        font-size: 18px;
+        color: #333;
+        font-weight: bolder;
+    }
+
+    .content {
+        font-size: 0;
+    }
+
+    .jibenxinxi  {
+        font-size: 0;
+    }
+
+    .jibenxinxi .content {
+        padding-right: 120px;
+    }
+
+    .avatar {
+        width: 120px;
+        float: right;
+    }
+
+    .content p
+        {
+        width: 50%;
+        display: inline-block;
+        font-weight:normal;
+        color: #333;
+        font-size: 15px;
+        line-height: 35px;
+        padding-left: 10px;
+        box-sizing: border-box;
+    }
+
+    .comps .desc {
+        color: #333;
+        font-size: 15px;
+        line-height: 35px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .comps .tit,
+    .comps .content.tit p,
+    .comps .desc {
+        font-weight: 500;
+    }
+
+    .project {
+        margin-bottom: 20px;
+    }
+
+    .project:not(:last-of-type) {
+        padding-bottom: 30px;
+        border-bottom: 1px dashed #ddd;
+    }
+
+    .project .item {
+        background: #efefef;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .project .item:not(:last-of-type) {
+        margin-bottom: 30px;
+    }
+
+    .project .item > div,
+    .project .item > div .right {
+        vertical-align: top;
+        line-height: 30px;
+        font-size: 15px;
+    }
+    .project .item > div .right {
+        display: inline-block;
+    }
+    .project .item > div .right p {
+        line-height: 30px;
+    }
+
+    .up {
+        padding: 10px;
+        background: #efefef;
+    }
+
+    .up,
+    .up .item,
+    .up .skills p  {
+        font-size: 15px;
+        line-height: 30px;
+    }
+    .up .item a {
+        color: blue;
+    }
+
+    .judge {
+        padding: 10px;
+        background: #efefef;
+    }
+    .judge p {
+        line-height: 30px;
+    }
+</style>
 </body>
 </html>
