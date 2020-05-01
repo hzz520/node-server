@@ -1,0 +1,79 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: zhongzhen.hzz
+ * @Date: 2020-04-27 17:08:16
+ * @LastEditors: zhongzhen.hzz
+ * @LastEditTime: 2020-05-01 23:51:35
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上图下文 绝对定位的应用</title>
+    <style>
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+        .list {
+            width: 140px;
+            height: 198px;
+            position: relative;
+            float: left;
+            margin: 6px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 5px 10px;
+        }
+        .list p {
+            line-height: 150%;
+            font-size: 14px;
+            text-align: center;
+        }
+        .pricea {
+            color: #9c9c9c;
+            text-decoration: line-through;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        .priceb {
+            color: #c30;
+            font-size: 12px;
+        }
+        .icon {
+            background-image: url(https://egret.oss-cn-beijing.aliyuncs.com/temp/xsq.png);
+            background-repeat: no-repeat;
+            height: 54px;
+            width: 54px;
+            position: absolute;
+            top: 5px;
+            right: 9px;
+            /* border-radius: 5px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="list">
+        <img src="https://egret.oss-cn-beijing.aliyuncs.com/temp/1.gif"><span class="icon"></span>
+        <p><a href="#">经典幼儿教育丛书全集</a></p>
+        <p><span class="priceb">￥29.5</span><span class="pricea">￥21.5</span></p>
+    </div>
+    <div class="list">
+        <img src="https://egret.oss-cn-beijing.aliyuncs.com/temp/2.gif"><span class="icon"></span>
+        <p><a href="#">经典幼儿教育丛书全集</a></p>
+        <p><span class="priceb">￥29.5</span><span class="pricea">￥21.5</span></p>
+    </div>
+    <div class="list">
+        <img src="https://egret.oss-cn-beijing.aliyuncs.com/temp/3.gif"><span class="icon"></span>
+        <p><a href="#">经典幼儿教育丛书全集</a></p>
+        <p><span class="priceb">￥29.5</span><span class="pricea">￥21.5</span></p>
+    </div>
+</body>
+</html>

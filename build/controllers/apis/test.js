@@ -39,6 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var pcas_1 = __importDefault(require("../../config/pcas"));
 var mysql_1 = require("../../config/mysql");
 var index_1 = __importDefault(require("../../middleware/flog/index"));
 exports.mysql = function (req, res) {
@@ -119,4 +120,10 @@ exports.insert = function (req, res) {
             return [2];
         });
     }); });
+};
+exports.pcas = function (req, res) {
+    res.json({
+        code: 0,
+        data: pcas_1.default
+    });
 };

@@ -8,6 +8,7 @@ import {
     Response,
     NextFunction
 } from 'express' 
+import pcasData from '../../config/pcas'
 
 import { connectionPool } from '../../config/mysql'
 import Flog from '../../middleware/flog/index'
@@ -93,6 +94,13 @@ export const insert = (req: Request, res: Response) => {
                 })
             })
         }
+    })
+}
+
+export const pcas = (req: Request, res: Response) => {
+    res.json({
+        code: 0,
+        data: pcasData
     })
 }
 

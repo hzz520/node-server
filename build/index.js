@@ -49,13 +49,15 @@ app.use(netjet_1.default({
     cache: { max: 100 }
 }));
 index_2.default(app);
+app.use('/threejs', express_1.default.static(path_1.default.resolve(__dirname, '../../threejs/examples')));
+app.use('/build', express_1.default.static(path_1.default.resolve(__dirname, '../../threejs/build')));
 app.get('/jianli', function (req, res, next) {
     res.sendFile(path_1.default.resolve(__dirname, '../static/jianli/index.html'));
 });
 app.use('/static', express_1.default.static(path_1.default.resolve(__dirname, '../static')));
 app.use('/', express_1.default.static(path_1.default.resolve(process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')));
-app.listen('8001', function () {
-    index_1.default.getLog('STARTSERVER').debug('app is listenning http://localhost:8001');
+app.listen('8002', function () {
+    index_1.default.getLog('STARTSERVER').debug('app is listenning http://localhost:8002');
     process.on('uncaughtException', function (err) {
         index_1.default.getLog('ERROR').err('err' + err);
         process.exit(1);
