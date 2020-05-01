@@ -5,7 +5,7 @@
   "scripts": {
     "jianli": "./bin/generator.sh",
     "ts": "npx tsc -w",
-    "open": "npx open http://127.0.0.1:8001",
+    "open": "npx open http://127.0.0.1:8002",
     "server": "cross-env NODE_ENV=development npx nodemon ./build/index.js",
     "start": "npx npm-run-all -p ts server open",
     "build": "npx rimraf ./build && npx tsc",

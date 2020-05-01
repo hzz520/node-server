@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: zhongzhen.hzz
+ * @Date: 2020-03-22 15:35:41
+ * @LastEditors: zhongzhen.hzz
+ * @LastEditTime: 2020-05-02 00:01:12
+ */
 import express from 'express'
 import netjet from 'netjet'
 import path from 'path'
@@ -62,6 +70,9 @@ app.use(netjet({
 
 router(app)
 
+app.use('/threejs', express.static(path.resolve(__dirname, '../../threejs/examples')))
+app.use('/build', express.static(path.resolve(__dirname, '../../threejs/build')))
+
 app.get('/jianli', (req, res, next) => {
   res.sendFile(path.resolve(__dirname, '../static/jianli/index.html'))
 })
@@ -69,8 +80,8 @@ app.get('/jianli', (req, res, next) => {
 app.use('/static', express.static(path.resolve(__dirname, '../static')))
 app.use('/', express.static(path.resolve( process.env.NODE_ENV === 'development' ? '/Aliyun' : '/opt', './egret/bin-release/web/2018')))
 
-app.listen('8001',function () {
-    Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8001')
+app.listen('8002',function () {
+    Flog.getLog('STARTSERVER').debug('app is listenning http://localhost:8002')
     process.on('uncaughtException', (err) => {
       Flog.getLog('ERROR').err('err' + err)
       process.exit(1)
