@@ -4,7 +4,7 @@
  * @Author: zhongzhen.hzz
  * @Date: 2020-08-11 17:20:17
  * @LastEditors: zhongzhen.hzz
- * @LastEditTime: 2020-08-11 20:13:48
+ * @LastEditTime: 2020-08-11 20:30:17
  */
 import { 
     Request,
@@ -12,6 +12,7 @@ import {
     NextFunction
 } from 'express'
 import sha1 from 'sha1'
+import crypto from 'crypto'
 import Flog from '../../middleware/flog/index'
 import request from 'request'
 
@@ -56,14 +57,19 @@ export const getWxJssdk = async (req: Request, res: Response, next: NextFunction
 }
 
 export const wxmsg = async (req: Request, res: Response, next: NextFunction) => {
-    console.log(JSON.stringify(req.query))
-    console.log(JSON.stringify(req.body))
-    res.json({
-        code: 0,
-        data: {
-            msg: 'success',
-            query: req.query,
-            body: req.body
-        }
-    })
+    let signature = req.query.signature,
+       timestamp = req.query.timestamp,
+       nonce = req.query.nonce,
+       echostr = req.query.echostr;
+      let a = crypto.createHash('sha1').update(['aiguangjia', timestamp, nonce].sort().join('')).digest('hex');  // 这里的pushToken就是在上面的那里配置的Token
+ 
+   if(a == signature){
+     // 如果验证成功则原封不动的返回
+     res.send(echostr);
+   }else{
+     res.send({
+       status: 400,
+       data: "check msg error"
+     })
+   }
 }
