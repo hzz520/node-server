@@ -39,6 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.wxmsg = exports.getWxJssdk = void 0;
 var sha1_1 = __importDefault(require("sha1"));
 var index_1 = __importDefault(require("../../middleware/flog/index"));
 var request_1 = __importDefault(require("request"));
@@ -78,6 +79,18 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
         catch (error) {
             index_1.default.getLog('ERROR').err(error);
         }
+        return [2];
+    });
+}); };
+exports.wxmsg = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        console.log(req);
+        res.json({
+            code: 0,
+            data: {
+                msg: 'success'
+            }
+        });
         return [2];
     });
 }); };

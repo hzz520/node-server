@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: zhongzhen.hzz
+ * @Date: 2020-08-11 17:20:17
+ * @LastEditors: zhongzhen.hzz
+ * @LastEditTime: 2020-08-11 17:42:49
+ */
 import { 
     Request,
     Response,
@@ -45,4 +53,14 @@ export const getWxJssdk = async (req: Request, res: Response, next: NextFunction
     } catch (error) {
         Flog.getLog('ERROR').err(error)
     }
+}
+
+export const wxmsg = async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req)
+    res.json({
+        code: 0,
+        data: {
+            msg: 'success'
+        }
+    })
 }
