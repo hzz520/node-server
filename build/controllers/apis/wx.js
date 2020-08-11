@@ -89,7 +89,9 @@ exports.wxmsg = function (req, res, next) { return __awaiter(void 0, void 0, voi
         res.json({
             code: 0,
             data: {
-                msg: 'success'
+                msg: 'success',
+                query: req.query,
+                body: req.body
             }
         });
         return [2];
