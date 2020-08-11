@@ -84,7 +84,8 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
 }); };
 exports.wxmsg = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        console.log(req);
+        console.log(JSON.stringify(req.query));
+        console.log(JSON.stringify(req.body));
         res.json({
             code: 0,
             data: {
