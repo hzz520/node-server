@@ -4,7 +4,7 @@
  * @Author: zhongzhen.hzz
  * @Date: 2020-03-22 15:35:41
  * @LastEditors: zhongzhen.hzz
- * @LastEditTime: 2020-05-02 00:01:12
+ * @LastEditTime: 2020-08-11 20:03:12
  */
 import express from 'express'
 import netjet from 'netjet'
@@ -17,7 +17,7 @@ import fcdn from './middleware/fcdn'
 
 import router from './router/index'
 
-import './config/redis'
+// import './config/redis'
 
 const app = express()
 

@@ -12,7 +12,6 @@ var index_1 = __importDefault(require("./middleware/flog/index"));
 var serve_favicon_1 = __importDefault(require("serve-favicon"));
 var fcdn_1 = __importDefault(require("./middleware/fcdn"));
 var index_2 = __importDefault(require("./router/index"));
-require("./config/redis");
 var app = express_1.default();
 app.use(body_parser_1.default.json({
     inflate: true,
