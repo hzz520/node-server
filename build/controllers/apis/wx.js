@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.wxmsg = exports.getWxJssdk = void 0;
 var sha1_1 = __importDefault(require("sha1"));
+var crypto_1 = __importDefault(require("crypto"));
 var index_1 = __importDefault(require("../../middleware/flog/index"));
 var request_1 = __importDefault(require("request"));
 exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
@@ -83,17 +84,19 @@ exports.getWxJssdk = function (req, res, next) { return __awaiter(void 0, void 0
     });
 }); };
 exports.wxmsg = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var signature, timestamp, nonce, echostr, a;
     return __generator(this, function (_a) {
-        console.log(JSON.stringify(req.query));
-        console.log(JSON.stringify(req.body));
-        res.json({
-            code: 0,
-            data: {
-                msg: 'success',
-                query: req.query,
-                body: req.body
-            }
-        });
+        signature = req.query.signature, timestamp = req.query.timestamp, nonce = req.query.nonce, echostr = req.query.echostr;
+        a = crypto_1.default.createHash('sha1').update(['aiguangjia', timestamp, nonce].sort().join('')).digest('hex');
+        if (a == signature) {
+            res.send(echostr);
+        }
+        else {
+            res.send({
+                status: 400,
+                data: "check msg error"
+            });
+        }
         return [2];
     });
 }); };
