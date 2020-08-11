@@ -4,7 +4,7 @@
  * @Author: zhongzhen.hzz
  * @Date: 2020-08-11 17:20:17
  * @LastEditors: zhongzhen.hzz
- * @LastEditTime: 2020-08-11 17:44:54
+ * @LastEditTime: 2020-08-11 20:13:48
  */
 import { 
     Request,
@@ -61,7 +61,9 @@ export const wxmsg = async (req: Request, res: Response, next: NextFunction) => 
     res.json({
         code: 0,
         data: {
-            msg: 'success'
+            msg: 'success',
+            query: req.query,
+            body: req.body
         }
     })
 }
