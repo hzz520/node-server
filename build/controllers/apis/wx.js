@@ -88,7 +88,9 @@ exports.wxmsg = function (req, res, next) { return __awaiter(void 0, void 0, voi
     return __generator(this, function (_a) {
         signature = req.query.signature, timestamp = req.query.timestamp, nonce = req.query.nonce, echostr = req.query.echostr;
         a = crypto_1.default.createHash('sha1').update(['aiguangjia', timestamp, nonce].sort().join('')).digest('hex');
-        if (a == signature) {
+        console.log(JSON.stringify(req.query))
+	console.log(JSON.stringify(req.body))
+	 if (a == signature) {
             res.send(echostr);
         }
         else {

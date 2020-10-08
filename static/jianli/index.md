@@ -23,6 +23,63 @@
 <div class="subtitle">工作项目经历</div>
 <div class="comps">
     <div class="content tit">
+        <p>2020年3月-至今</p>
+        <p>躺平设计家(上海)有限公司</p>
+    </div>
+    <div class='desc'>【工作描述】：爱逛家微信小程序、箭牌大屏项目、pad项目管理后台、pad h5页面</div>
+    <div class="project">   
+        <div class="item">
+            <div class='item-title'>项目一介绍：</div>
+            <div class='item-name'>项目名称：爱逛家微信小程序</div>
+            <div class="item-skills">
+            	<span>技术要点：</span>
+            	<div class="right">
+            		<p>使用taro2.0+redux+typescript+hooks开发小程序应用</p>
+                    </div>
+            </div>
+            <div class="item-duty">项目描述：从pad端生成带门店信息、清单信息的普通链接二维码，提供用户在离店后进行清单的操作以及商品、方案信息的浏览</div>
+            <div class="item-duty">项目职责：负责小程序页面ui的搭建以及里面业务流程的处理</div>
+        </div>
+        <div class="item">
+            <div class='item-title'>项目二介绍：</div>
+            <div class='item-name'>项目名称：箭牌大屏项目</div>
+            <div class="item-skills">
+            	<span>技术要点：</span>
+            	<div class="right">
+                    <p>1.安卓容器混合开发</p>
+                    <p>2.使用jsbridge和native进行通信</p>
+            		<p>3.技术栈体系react+hooks+mobx</p>
+                    </div>
+            </div>
+            <div class="item-duty">项目描述：该项目是给ka商家提供在安卓大屏上进行商品/全景方案的浏览以及清单的一系列操作</div>
+            <div class="item-duty">项目职责：1、框架的搭建；2、页面ui的实现，3、交互流程的实现</div>
+        </div>
+        <div class="item">
+            <div class='item-title'>项目三介绍：</div>
+            <div class='item-name'>项目名称：pad项目管理后台、pad h5页面</div>
+            <div class="item-skills">
+            	<span>技术要点：</span>
+            	<div class="right">
+            		<p>后台管理技术栈:ice + iceStore</p>
+                    <p>pad h5技术栈:react + hooks</p>
+                    </div>
+            </div>
+            <div class="item-duty">1、项目职责：负责pad后台管理淘宝登陆模块、门店管理、员工管理模块的实现；2、pad h5</div>
+        </div>
+        <div class="item">
+            <div class='item-title'>项目四介绍：</div>
+            <div class='item-name'>项目名称：58商铺小程序</div>
+            <div class="item-skills">
+            	<span>技术要点：</span>
+            	<div class="right">
+            		<p>使用mpvue进行开发，与流行前端开发方式统一，降低开发与维护成本</p>
+                    </div>
+            </div>
+            <div class="item-duty">项目职责：58商铺小程序开发与维护</div>
+        </div>
+    </div>
+<div class="comps">
+    <div class="content tit">
         <p>2018年5月-2020年2月</p>
         <p>北京城市网邻信息技术有限公司</p>
     </div>
@@ -125,17 +182,10 @@
     自建站点：<a href="https://hzz520.site/">https://hzz520.site/</a>
     </div>
     <div class="skills">
-        <p>1. nginx路由分发</p>
-        <p>2. https证书安装</p>
-        <p>3. mongodb服务搭建</p>
-        <p>4. typescript + express + mongoose 后端服务搭建</p>
-        <p>5. react + redux + webpack 构建前端页面资源</p>
-        <p>6.egret web开发初尝试</p>
-        <p>7.centos 搭建git服务器设置免密</p>
-        <p>8.centos 搭建ftp服务</p>
-        <p>9.github webhook自动部署</p>
-        <p>10.简单shell脚本的编写</p>
-        <p>11.使用md2html2pdf命令行通过makedown写简历</p>
+        <p>1. 熟悉nginx配置</p>
+        <p>2. typescript + express + mongoose 后端服务搭建</p>
+        <p>3.熟悉centos 服务器部署</p>
+        <p>4.简单shell脚本的编写</p>
     </div>
 </div>
 <div class="subtitle">自我评价</div>
